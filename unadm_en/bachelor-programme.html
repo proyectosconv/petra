@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlapping Parallax Section</title>
+    <!-- Skeleton CSS Base -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #111111;
+    }
+
+    .en_cabinet-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 40px 0px 40px;
+        box-sizing: border-box;
+    }
+
+    /* --- FEATURED SECTION (PRESIDENT) --- */
+    .en_featured-leader {
+        display: flex;
+        gap: 50px;
+        align-items: flex-start;
+        margin-bottom: 90px;
+    }
+
+    .en_featured-image-container {
+        width: 45%;
+        flex-shrink: 0;
+    }
+
+    .en_featured-image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    .en_featured-info {
+        width: 55%;
+        padding-top: 5px;
+    }
+
+    .en_featured-name-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        color: #111111;
+        display: inline-block;
+        margin-bottom: 20px;
+        transition: opacity 0.2s ease;
+    }
+
+    .en_featured-name-title:hover {
+        opacity: 0.6;
+    }
+
+    .en_featured-bio {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #222222;
+        font-weight: 400;
+    }
+
+    /* --- CABINET SECTION HEADER --- */
+    .en_section-title {
+        font-family: Georgia, serif;
+        font-size: 3.2rem;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        color: #111111;
+        margin-bottom: 45px;
+    }
+
+    /* --- CABINET GRID (3 COLUMNS) --- */
+    .en_cabinet-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 30px;
+        row-gap: 50px;
+    }
+
+    .en_leader-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .en_leader-image-wrapper {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        margin-bottom: 16px;
+        background-color: #f4f4f4;
+    }
+
+    .en_leader-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .en_leader-card:hover .en_leader-image-wrapper img {
+        transform: scale(1.02);
+    }
+
+    .en_leader-name {
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        color: #111111;
+        margin-bottom: 6px;
+        display: inline-block;
+        transition: opacity 0.2s ease;
+    }
+
+    .en_leader-name:hover {
+        opacity: 0.6;
+    }
+
+    .en_leader-role {
+        font-size: 20px;
+        line-height: 1.35;
+        color: #333333;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* --- RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 900px) {
+        .en_featured-leader {
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .en_featured-image-container,
+        .en_featured-info {
+            width: 100%;
+        }
+
+        .en_cabinet-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .en_cabinet-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .en_section-title {
+            font-size: 2.4rem;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="en_navbar">
+        <a href="index.html" class="en_nav-logo"> <img src="img/logo.svg" width="200"></a>
+        <button class="en_hamburger-toggle" id="en_menuBtn" aria-label="Toggle Menu">
+            <span class="en_hamburger-line"></span>
+            <span class="en_hamburger-line"></span>
+        </button>
+    </nav>
+    <div class="en_megamenu" id="en_megamenu">
+        <div class="en_megamenu-inner">
+            <div>
+                <div class="en-heading en_megamenu-col-title">About us</div><br /><br />
+                <ul class="en_megamenu-list">
+                    <li><a href="about-us.html" class="en-link">A general overview of UnADM ></a></li>
+                    <li><a href="#" class="en-link">University Council ↗</a></li>
+                    <li><a href="governance.html" class="en-link">Governance ></a></li>
+                    <li><a href="#" class="en-link">Mission, Vission & Goals ></a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="en-heading en_megamenu-col-title">Bachelor Programme</div>
+                <ul class="en_megamenu-list">
+                    <li><a href="#" class="en-link">Division of Social & Administrative Sciences ></a></li>
+                    <li><a href="#" class="en-link">Division of Exact Sciences, Engineering & Technology ></a></li>
+                    <li><a href="#" class="en-link">Division of Health, Biological & Environmental Sciences ></a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="en-heading en_megamenu-col-title">Watch / Listen / Read</div>
+                <ul class="en_megamenu-list">
+                    <li><a href="#" class="en-link">Watch our videos ↗</a></li>
+                    <li><a href="#" class="en-link">Read our articles ↗</a></li>
+                    <li><a href="#" class="en-link">Listen to podcasts ↗</a></li>
+                    <li><a href="#" class="en-link">Extracurricular activities↗</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="en-museum-widget">
+                    <span>Sitio web en <br><strong>español:</strong></span>
+                    <button class="en-ticket-btn">Visitar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="en_cabinet-page container">
+        <div class="row">
+            <div class="twelve columns">
+                <nav id="gac30_breadcrumb-container"></nav>
+            </div>
+        </div>
+        <!-- SECCIÓN: PRESIDENT'S CABINET -->
+        <section>
+            <h2 class="en-heading">Bachelor Programme</h2>
+            <div class="en_cabinet-grid">
+                <!-- Fila 1 - Integrante 1 -->
+                <div class="en_leader-card">
+                    <div class="en_leader-image-wrapper">
+                        <img src="img/trapiches_oaxaca.jpg" alt="Administration of Tourism Enterprises">
+                    </div>
+                    <a href="social-administrative-sciences.html" class="en-link">Division of Social & Administrative Sciences &rsaquo;</a>
+                </div>
+                <!-- Fila   -->
+                <div class="en_leader-card">
+                    <div class="en_leader-image-wrapper">
+                        <img src="img/tepoztlan.jpg" alt="">
+                    </div>
+                    <a href="#" class="en-link">Division of Exact Sciences, Engineering & Technology &rsaquo;</a>
+                </div>
+                <!-- Fila   -->
+                <div class="en_leader-card">
+                    <div class="en_leader-image-wrapper">
+                        <img src="img/aron-yigin-sNY6B9NsPP8-unsplash.jpg" alt="">
+                    </div>
+                    <a href="#" class="en-link">Division of Health, Biological & Environmental Sciences &rsaquo;</a>
+                </div>
+                <!-- Fila   -->
+              
+            </div>
+        </section>
+        <br /><br />
+        <!-- Footer_______________________________________________________________________________ -->
+        <section class="en-follow-section">
+            <div class="container">
+                <div class="row">
+                    <!-- Columna Izquierda: Título -->
+                    <div class="five columns">
+                        <h2 class="en-follow-title">Follow us</h2>
+                    </div>
+                    <!-- Columna Derecha: Enlaces de Redes Sociales -->
+                    <div class="seven columns">
+                        <ul class="en-follow-list">
+                            <li class="en-follow-item">
+                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                    <span>Facebook</span>
+                                    <span class="en-follow-arrow">&rarr;</span>
+                                </a>
+                            </li>
+                            <li class="en-follow-item">
+                                <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                    <span>Twitter</span>
+                                    <span class="en-follow-arrow">&rarr;</span>
+                                </a>
+                            </li>
+                            <li class="en-follow-item">
+                                <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                    <span>YouTube</span>
+                                    <span class="en-follow-arrow">&rarr;</span>
+                                </a>
+                            </li>
+                            <li class="en-follow-item">
+                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                    <span>Instagram</span>
+                                    <span class="en-follow-arrow">&rarr;</span>
+                                </a>
+                            </li>
+                            <li class="en-follow-item">
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                    <span>LinkedIn</span>
+                                    <span class="en-follow-arrow">&rarr;</span>
+                                </a>
+                            </li>
+                        </ul><br />
+                        For press inquiries: <a class="en_small_links" href="mailto:ivan.marin@nube.unadmexico.mx">ivan.marin@nube.unadmexico.mx</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer_______________________________________________________________________________ -->
+    </div>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <script src="/js/breadcrumb.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('en_menuBtn');
+        const megamenu = document.getElementById('en_megamenu');
+        if (menuBtn && megamenu) {
+            menuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isActive = menuBtn.classList.toggle('en_active');
+                megamenu.classList.toggle('en_open', isActive);
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>
