@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de — Repositorio Digital</title>
+    
+    <!-- Skeleton Framework via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+      <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="arc_container-wide">
+        <!-- CABECERA -->
+        <header class="arc_header">
+            <div class="arc_brand">
+                <div class="arc_gob-logo"><img src="img/logo2.png" width="300px"></div>
+            </div>
+            <nav class="arc_nav">
+                <a href="index.html">Colecciones</a>
+                <a href="acerca-de.html" class="arc_active">Acerca de</a>
+                <a href="ayuda.html">Ayuda</a>
+            </nav>
+        </header>
+
+        <!-- BANNER DE TÍTULO -->
+        <section class="arc_page-banner">
+            <h1 class="arc_page-title">archivo_UnADM / acerca_de</h1>
+            <p class="arc_page-subtitle">Infraestructura técnica y políticas de preservación digital.</p>
+        </section>
+
+        <!-- LAYOUT SKELETON -->
+        <main class="row arc_main-layout">
+            
+            <!-- PANEL LATERAL (3 Columnas) -->
+            <aside class="three columns arc_sidebar-nav">
+                <div class="arc_sidebar-title">Secciones</div>
+                <ul class="arc_sidebar-menu">
+                    <li><a href="#objetivo">1. Objetivo Central</a></li>
+                    <li><a href="#proyectos">2. Proyectos Integrados</a></li>
+                    <li><a href="#metadatos">3. Esquema de Metadatos</a></li>
+                </ul>
+            </aside>
+
+            <!-- CONTENIDO CENTRAL (9 Columnas) -->
+            <section class="nine columns">
+                
+                <div id="objetivo" class="arc_content-section">
+                    <h2>1. Objetivo Central</h2>
+                    <p>El Sistema Centralizado de Repositorios del <strong>archivo_UnADM</strong> tiene como función primordial la preservación a largo plazo, el control administrativo y la libre consulta de la producción digital generada por la Universidad Abierta y a Distancia de México. Este entorno centraliza el material multimedia, académico y técnico bajo estrictas normas de indexación orientadas a la interoperabilidad de sistemas.</p>
+                </div>
+
+                <div id="proyectos" class="arc_content-section">
+                    <h2>2. Proyectos Integrados</h2>
+                    <p>El repositorio cosecha de forma automatizada y manual los entregables e hitos técnicos de las iniciativas clave de la institución, asegurando la trazabilidad documental de cada proceso:</p>
+                  
+                </div>
+
+                <div id="metadatos" class="arc_content-section">
+                    <h2>3. Esquema de Metadatos</h2>
+                    <p>Para garantizar que los sistemas de bases de datos compartan la información sin fricciones, se utiliza un perfil de aplicación derivado de los estándares internacionales de catalogación:</p>
+                    <table class="u-full-width arc_tech-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">CAMPO</th>
+                                <th style="width: 25%;">TIPO</th>
+                                <th>REGLA DE VALIDACIÓN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="arc_code-span">ID_RECURSO</span></td>
+                                <td>Shorthand Alpha-Numeric</td>
+                                <td>Identificador único e inmutable con prefijo institucional <span class="arc_code-span">UNA_</span> seguido de 4 dígitos.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="arc_code-span">PROYECTO_ORIGEN</span></td>
+                                <td>String</td>
+                                <td>Debe coincidir obligatoriamente con el catálogo de programas validados.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="arc_code-span">FORMATO</span></td>
+                                <td>Enum</td>
+                                <td>Normalizado bajo estándares de extensiones válidas de internet (<span class="arc_code-span">MP3</span>, <span class="arc_code-span">PDF</span>, <span class="arc_code-span">MP4</span>).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>VERSIÓN_NÚCLEO: v3.4.16-stable</div>
+        </footer>
+    </div>
+
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+</body>
+</html>

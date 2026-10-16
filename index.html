@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>archivo UnADM/ — Repositorio Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+    <style>
+        /* CONFIGURACIÓN DEL SISTEMA DE DISEÑO (ESTILO MIT) */
+        :root {
+            --bg-main: #ffffff;
+            --bg-sidebar: #f4f4f4;
+            --border-color: #dcdcdc;
+            --text-primary: #161616;
+            --text-secondary: #525252;
+            --accent-institutional: #621132;
+            
+            /* Tipografía Dual */
+            --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            margin-top: 15px!important;
+        }
+
+        .arc_container-wide {
+            max-width: 1400px;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        /* HEADER REDUCIDO PARA LANDING */
+        .arc_header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .arc_nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin-left: 24px;
+            font-family: var(--font-ui);
+        }
+
+        .arc_nav a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        /* CONTENEDOR CENTRAL DE BÚSQUEDA (HERO) */
+        .arc_search-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px); /* Balancea el centrado vertical */
+            padding: 40px 0;
+            box-sizing: border-box;
+        }
+
+        /* LOGO CENTRADO Y ESCALADO */
+        .arc_hero-brand {
+            margin-bottom: 36px;
+            text-align: center;
+        }
+
+        .arc_hero-brand img {
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* BARRA DE BÚSQUEDA EXPANSIBLE */
+        .arc_search-central-box {
+            width: 100%;
+            max-width: 720px; /* Ancho óptimo de lectura y escaneo */
+            margin: 0 auto;
+        }
+
+        .arc_search-bar-container {
+            display: flex;
+            border: 1px solid var(--text-primary);
+            height: 46px; /* Ligeramente más alta para enfatizar la jerarquía de home */
+            background: #fff;
+        }
+
+        .arc_search-input {
+            flex: 1;
+            border: none !important;
+            padding: 12px 18px !important;
+            font-size: 1.5rem;
+            font-family: var(--font-ui);
+            margin-bottom: 0 !important;
+            box-shadow: none !important;
+            height: auto !important;
+        }
+
+        .arc_search-button {
+            background: var(--text-primary) !important;
+            color: white !important;
+            border: none !important;
+            padding: 0 32px !important;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 1.3rem !important;
+            letter-spacing: 0.5px;
+            margin-bottom: 0 !important;
+            height: auto !important;
+            border-radius: 0 !important;
+        }
+
+        .arc_search-button:hover {
+            background: var(--accent-institutional) !important;
+        }
+
+        /* NAVEGACIÓN DE FILTROS (DROPDOWNS SUBYACENTES) */
+        .arc_dropdown-nav-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+      .arc_filter-select {
+    flex: 1;
+    font-family: var(--font-mono) !important;
+    font-size: 1.2rem !important;
+    height: 38px !important;
+    
+    /* PADDING: 16px de aire a la izquierda del texto y 36px a la derecha para que no choque con la flecha */
+    padding: 0 36px 0 16px !important; 
+    
+    margin: 0 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    background-color: #fafafa !important;
+    color: var(--text-secondary);
+    cursor: pointer;
+    
+    /* Forzar la eliminación de estilos heredados del framework */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    
+    /* Renderizado e inyección limpia del indicador */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23525252'/></svg>") !important;
+    background-repeat: no-repeat !important;
+    
+    /* Ubicación matemática exacta: 16px separado del borde derecho, centrado verticalmente */
+    background-position: calc(100% - 16px) center !important;
+    background-size: 10px 6px !important;
+}
+
+/* Limpieza de remanentes para motores antiguos de Edge/IE */
+.arc_filter-select::-ms-expand {
+    display: none !important;
+}
+
+        /* FOOTER TÉCNICO */
+        .arc_footer {
+            border-top: 1px solid var(--border-color);
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="arc_container-wide">
+        <main class="arc_search-hero">
+            <div class="arc_hero-brand">
+                <img src="img/logo2.png" alt="Archivo UnADM">
+            </div>
+            <div class="arc_search-central-box">
+                <div class="arc_search-bar-container">
+                    <input type="text" class="arc_search-input" autofocus placeholder="Buscar por palabra clave, título, ID de recurso...">
+                    <button class="arc_search-button">Buscar</button>
+                </div>
+                <!-- Fila de Dropdowns Inferiores (Filtros Avanzados) -->
+                <div class="arc_dropdown-nav-group">
+                    <select class="arc_filter-select">
+                        <option value="all" selected>AÑO (TODOS)</option>
+                    </select>
+                    <select class="arc_filter-select">
+                        <option value="all" selected>TEMA (TODOS)</option>
+                    </select>
+                    <select class="arc_filter-select">
+                        <option value="all" selected>FORMATO (TODOS)</option>
+                    </select>
+                </div>
+            </div>
+        </main>
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>MÉTRICAS_TOTALES: [556 audios] / [456 documentos] / [5,467 videos]</div>
+        </footer>
+    </div>
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accessibility.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <!-- Lógica del Repositorio Centralizado -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
