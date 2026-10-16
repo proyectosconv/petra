@@ -1,0 +1,926 @@
+/* ==========================================================================
+   CONFIGURACIÓN DEL SISTEMA DE DISEÑO (ESTILO MIT)
+   ========================================================================== */
+:root {
+    --bg-main: #ffffff;
+    --bg-sidebar: #f4f4f4;
+    --border-color: #dcdcdc;
+    --text-primary: #161616;
+    --text-secondary: #525252;
+    --accent-institutional: #621132;
+    
+    /* Tipografía Dual */
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+body {
+    font-family: var(--font-ui);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin-top: 15px !important;
+}
+
+/* Contenedor expandido para aprovechar monitores anchos (Override de Skeleton) */
+.arc_container-wide {
+    max-width: 1400px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER & NAVEGACIÓN INSTITUCIONAL
+   ========================================================================== */
+.arc_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Variante optimizada para la Landing Page (Agrega class="arc_landing" al header en el HTML) */
+.arc_header.arc_landing {
+    justify-content: flex-end;
+    padding: 12px 0;
+    border-bottom: none;
+}
+
+.arc_brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.arc_gob-logo {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    border-right: 1px solid var(--border-color);
+    padding-right: 16px;
+}
+
+.arc_repo-title {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.arc_nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-left: 16px;
+}
+
+/* Variante de navegación con más aire en la Landing Page */
+.arc_header.arc_landing .arc_nav a {
+    font-size: 1.3rem;
+    margin-left: 24px;
+    font-family: var(--font-ui);
+}
+
+.arc_nav a:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.arc_nav a.arc_active {
+    color: var(--accent-institutional);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   BANNERS DE PÁGINA Y ESTRUCTURA DE LAYOUT
+   ========================================================================== */
+.arc_page-banner {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+}
+
+.arc_page-title {
+    font-family: var(--font-mono);
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.arc_page-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.arc_breadcrumb-banner {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+}
+
+.arc_back-link {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.arc_back-link:hover {
+    color: var(--accent-institutional);
+}
+
+.arc_main-layout {
+    margin-top: 24px;
+    min-height: calc(100vh - 200px);
+}
+
+/* ==========================================================================
+   CONSOLA DE BÚSQUEDA TÉCNICA Y FACETS (VISTA INTERNA)
+   ========================================================================== */
+.arc_search-console {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0;
+}
+
+.arc_search-bar-container {
+    display: flex;
+    border: 1px solid var(--text-primary);
+    height: 40px;
+}
+
+.arc_search-input {
+    flex: 1;
+    border: none !important;
+    padding: 10px 16px !important;
+    font-size: 1.4rem;
+    font-family: var(--font-ui);
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+    height: auto !important;
+}
+
+.arc_search-scope {
+    border: none !important;
+    border-right: 1px solid var(--text-primary) !important;
+    background: var(--bg-sidebar) !important;
+    padding: 0 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+.arc_search-button {
+    background: var(--text-primary) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0 24px !important;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.5px;
+    margin-bottom: 0 !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+.arc_active-facets {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.arc_facet-label {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.arc_chip {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    padding: 2px 8px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+}
+
+.arc_chip span {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   CONTENEDOR CENTRAL DE BÚSQUEDA (HERO LANDING OVERRIDES)
+   ========================================================================== */
+.arc_search-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 180px);
+    padding: 40px 0;
+    box-sizing: border-box;
+}
+
+.arc_hero-brand {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.arc_hero-brand img {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+}
+
+.arc_search-central-box {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* Escalamiento jerárquico exclusivo para la barra de la Landing */
+.arc_search-hero .arc_search-bar-container {
+    height: 46px;
+    background: #ffffff;
+}
+
+.arc_search-hero .arc_search-input {
+    padding: 12px 18px !important;
+    font-size: 1.5rem;
+}
+
+.arc_search-hero .arc_search-button {
+    padding: 0 32px !important;
+    font-size: 1.3rem !important;
+}
+
+.arc_search-hero .arc_search-button:hover {
+    background: var(--accent-institutional) !important;
+}
+
+/* Dropdowns inferiores de la Landing */
+.arc_dropdown-nav-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.arc_filter-select {
+    flex: 1;
+    font-family: var(--font-mono) !important;
+    font-size: 1.2rem !important;
+    height: 38px !important;
+    padding: 0 36px 0 16px !important; 
+    margin: 0 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    background-color: #fafafa !important;
+    color: var(--text-secondary);
+    cursor: pointer;
+    
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23525252'/></svg>") !important;
+    background-repeat: no-repeat !important;
+    background-position: calc(100% - 16px) center !important;
+    background-size: 10px 6px !important;
+}
+
+.arc_filter-select::-ms-expand {
+    display: none !important;
+}
+
+/* ==========================================================================
+   PANELES LATERALES (FILTROS Y NAVEGACIÓN INTERNA)
+   ========================================================================== */
+.arc_sidebar-filters,
+.arc_sidebar-nav {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    padding: 20px 16px;
+}
+
+.arc_sidebar-title {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.arc_sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.arc_sidebar-menu li {
+    margin-bottom: 8px;
+}
+
+.arc_sidebar-menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.3rem;
+    display: block;
+}
+
+.arc_sidebar-menu a:hover {
+    color: var(--text-primary);
+}
+
+.arc_filter-section {
+    margin-bottom: 24px;
+}
+
+.arc_filter-title {
+    font-family: var(--font-mono);
+    font-size: 1.5rem !important;
+    font-weight: 700;
+    line-height: 1.3 !important;
+    margin: 0 0 10px;
+    white-space: nowrap;
+}
+
+.arc_facet-search {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0;
+}
+
+.arc_facet-options {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+#yearFacetOptions {
+    max-height: none;
+    overflow-y: visible;
+}
+
+.arc_facet-options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 0 0 6px;
+    font-size: 1.3rem !important;
+    font-weight: normal;
+}
+
+.arc_facet-options label[hidden] {
+    display: none;
+}
+
+.arc_facet-options input[type="checkbox"] {
+    flex: 0 0 auto;
+    margin: 3px 0 0;
+}
+
+.arc_facet-count {
+    margin-left: auto;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.arc_filter-header {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.arc_filter-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.arc_filter-option label {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    font-weight: normal !important;
+    font-size: 1.3rem !important;
+    cursor: pointer;
+}
+
+.arc_filter-option input[type="checkbox"] {
+    margin: 0 8px 0 0 !important;
+    display: inline-block !important;
+}
+
+.arc_count {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive table: converts table to stacked cards on small screens */
+.arc_table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.arc_data-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.arc_data-table thead th {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+.arc_data-table tbody td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #f1f1f1;
+    vertical-align: top;
+}
+
+/* Small screens: visually stack rows as cards with label-value pairs */
+@media (max-width: 760px) {
+    .arc_data-table,
+    .arc_data-table thead,
+    .arc_data-table tbody,
+    .arc_data-table th,
+    .arc_data-table td,
+    .arc_data-table tr {
+        display: block;
+    }
+
+    .arc_data-table thead {
+        display: none;
+    }
+
+    .arc_data-table tr {
+        margin: 0 0 12px 0;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+
+    .arc_data-table td {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 8px 6px;
+        gap: 6px;
+    }
+
+    .arc_data-table td:before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--text-secondary);
+        margin-right: 0;
+        margin-bottom: 6px;
+        flex: none;
+    }
+
+    .arc_data-table td .arc_td-title {
+        display: block;
+    }
+
+    .arc_tag-container,
+    .arc_tag-container .arc_tag,
+    .arc_data-table td .arc_tag {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: fit-content !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .arc_tag {
+        display: block !important;
+        margin-right: 0 !important;
+        width: fit-content !important;
+    }
+}
+
+/* Make badges and tags wrap nicely */
+.arc_tag { display: inline-block; margin-right: 6px; margin-top: 6px; }
+.arc_badge-fmt { display: inline-block; padding: 4px 8px; border-radius: 3px; font-weight:700; }
+
+
+/* ==========================================================================
+   COMPONENTES DE CONTENIDO INFORMATIVO Y RECURSOS
+   ========================================================================== */
+.arc_content-section {
+    margin-bottom: 40px;
+}
+
+.arc_content-section h2 {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--text-primary);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.arc_content-section p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+.arc_bullet-list {
+    margin-left: 20px;
+    margin-bottom: 24px;
+}
+
+.arc_bullet-list li {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.arc_code-span {
+    font-family: var(--font-mono);
+    background-color: var(--bg-sidebar);
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    border: 1px solid var(--border-color);
+}
+
+.arc_code-box {
+    font-family: var(--font-mono);
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    font-size: 1.3rem;
+    margin: 16px 0;
+    display: block;
+    white-space: pre-wrap;
+}
+
+/* ==========================================================================
+   CONTENEDOR DE RESULTADOS Y TABLAS MÁSTER / TÉCNICAS
+   ========================================================================== */
+.arc_results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.arc_results-count {
+    font-size: 1.4rem;
+}
+
+.arc_results-count strong {
+    font-family: var(--font-mono);
+}
+
+.arc_sort-select {
+    font-family: var(--font-ui) !important;
+    font-size: 1.2rem !important;
+    padding: 2px !important;
+    height: auto !important;
+    margin: 0 !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.arc_data-table, 
+.arc_tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-bottom: 0 !important;
+}
+
+.arc_tech-table {
+    margin-top: 16px;
+}
+
+.arc_data-table th, 
+.arc_tech-table th {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px 12px !important;
+    border-bottom: 2px solid var(--text-primary) !important;
+    color: var(--text-secondary);
+}
+
+.arc_tech-table th {
+    padding: 6px 12px !important;
+}
+
+.arc_data-table td, 
+.arc_tech-table td {
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    vertical-align: middle;
+    font-size: 1.3rem;
+}
+
+.arc_tech-table td {
+    padding: 8px 12px !important;
+    vertical-align: top;
+}
+
+.arc_data-table tr:hover td {
+    background-color: #fcfcfc;
+}
+
+.arc_td-thumb {
+    width: 70px;
+    padding: 8px 6px !important;
+}
+
+.arc_thumb {
+    display: block;
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    background: var(--bg-sidebar);
+    border-radius: 4px;
+}
+
+.arc_thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    border: 1px dashed var(--border-color);
+    background: var(--bg-sidebar);
+    border-radius: 4px;
+    font-size: 9px;
+    line-height: 1.1;
+    text-transform: lowercase;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.arc_td-id {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    width: 80px;
+}
+
+.arc_td-title {
+    font-weight: 600;
+    color: var(--accent-institutional);
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.arc_td-title:hover {
+    text-decoration: underline;
+}
+
+.arc_td-year {
+    font-family: var(--font-mono);
+    width: 70px;
+}
+
+/* ==========================================================================
+   VISTA DE DETALLE DEL RECURSO (PREVISUALIZACIÓN Y METADATOS)
+   ========================================================================== */
+.arc_preview-box-pdf {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+    height: 650px;
+    position: relative;
+}
+
+.arc_pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.arc_resource-info h1 {
+    font-family: var(--font-mono);
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.arc_resource-description {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    text-align: justify;
+    margin-bottom: 24px;
+}
+
+.arc_metadata-panel {
+    border: 1px solid var(--border-color);
+    padding: 24px 20px;
+    background-color: var(--bg-main);
+}
+
+.arc_panel-title {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.arc_meta-group {
+    margin-bottom: 16px;
+}
+
+.arc_meta-label {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+}
+
+.arc_meta-value {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.arc_meta-value .arc_badge-pdf {
+    font-family: var(--font-mono);
+    background-color: var(--bg-pdf);
+    border: 1px solid var(--accent-pdf);
+    color: var(--accent-pdf);
+    padding: 2px 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   BOTONES, FORMAT BADGES Y ETIQUETAS (TAGS)
+   ========================================================================== */
+.arc_btn-action {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--text-primary);
+    text-decoration: none;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.arc_btn-primary {
+    background-color: var(--accent-institutional);
+    color: #ffffff !important;
+    border-color: var(--accent-institutional);
+}
+
+.arc_btn-primary:hover {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.arc_btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.arc_btn-secondary:hover {
+    background-color: var(--bg-sidebar);
+}
+
+.arc_badge-fmt {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border: 1px solid var(--text-primary);
+    background: transparent;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.arc_badge-fmt.arc_pdf { background-color: #fff1f0; border-color: #f5222d; color: #f5222d; }
+.arc_badge-fmt.arc_mp3 { background-color: #e6f7ff; border-color: #1890ff; color: #1890ff; }
+.arc_badge-fmt.arc_mp4 { background-color: #f6ffed; border-color: #52c41a; color: #52c41a; }
+
+.arc_tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.arc_tag {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-sidebar);
+    padding: 2px 8px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+}
+
+.arc_tag-link {
+    text-decoration: none;
+}
+
+.arc_tag-link:hover,
+.arc_tag-link:focus-visible {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+    .arc_tag-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px;
+    }
+
+    .arc_tag,
+    .arc_data-table td .arc_tag {
+        display: block !important;
+        margin-right: 0 !important;
+        margin-top: 6px !important;
+        width: fit-content !important;
+    }
+
+    .arc_tag + .arc_tag {
+        margin-top: 6px !important;
+    }
+}
+
+/* ==========================================================================
+   FOOTER TÉCNICO UNIFICADO
+   ========================================================================== */
+.arc_footer {
+    border-top: 1px solid var(--border-color);
+    padding: 16px 0;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}

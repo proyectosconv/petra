@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlapping Parallax Section</title>
+    <!-- Skeleton CSS Base -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="en_navbar">
+        <a href="#" class="en_nav-logo"> <img src="img/logo.svg" width="200"></a>
+        <!-- Botón Hamburguesa -->
+        <button class="en_hamburger-toggle" id="en_menuBtn" aria-label="Toggle Menu">
+            <span class="en_hamburger-line"></span>
+            <span class="en_hamburger-line"></span>
+        </button>
+    </nav>
+    <!-- MEGAMENU OVERLAY -->
+    <div class="en_megamenu" id="en_megamenu">
+        <div class="en_megamenu-inner">
+            <div>
+                <div class="en-heading en_megamenu-col-title">About us</div><br /><br />
+                <ul class="en_megamenu-list">
+                  <li> <a href="about.us.html" class="en-link">A general overview of UnADM ></a></li>
+                    <li> <a href="#" class="en-link">University Council ↗</a></li>
+                    <li> <a href="governance.html" class="en-link">Governance ></a></li>
+                    <li> <a href="#" class="en-link">Mission, Vission & Goals ></a></li>
+                
+                </ul>
+            </div>
+            <div>
+                <div class="en-heading en_megamenu-col-title">Bachelor Programme</div>
+                <ul class="en_megamenu-list">
+                    <li><a href="#" class="en-link">Division of Social & Administrative Sciences ></a></li>
+                    <li><a href="#" class="en-link">Division of Exact Sciences, Engineering & Technology ></a></li>
+                    <li><a href="#" class="en-link">
+                            Division of Health, Biological & Environmental Sciences ></a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="en-heading en_megamenu-col-title">Watch / Listen / Read</div>
+                <ul class="en_megamenu-list">
+                    <li><a href="#" class="en-link">Watch our videos ↗</a></li>
+                    <li><a href="#" class="en-link">
+                            Read our articles ↗</a></li>
+                    <li><a href="#" class="en-link">
+                            Listen to podcasts ↗</a></li>
+                    <li><a href="#" class="en-link">Extracurricular activities↗</a></li>
+                </ul>
+            </div>
+            <div> 
+              <div class="en-museum-widget">
+                <span>Sitio web en <br><strong>español:</strong></span>
+                <button class="en-ticket-btn">Visitar</button>
+                <!--<span class="en-search-icon">&#9906;</span>-->
+            </div>
+                <!--<div class="en_megamenu-card">
+
+                    <div class="en_megamenu-card-title">Summer Special Exhibition 2026</div>
+                    <a href="#" class="en_megamenu-card-link">Reserve Tickets &rarr;</a>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <section class="en-museum-hero">
+
+        <!-- Watermarks (Background blurred assets) -->
+      
+        <!-- Upper Navigation / Header Bar -->
+        <header class="en-museum-header">
+            
+            
+        </header>
+        <!-- Central Headline Section -->
+        <div class="en-museum-center">
+       
+        </div>
+        <!-- Bottom Direct Links -->
+        <ul class="en-museum-nav">
+            <li><a href="about-us.html" class="en-museum-nav-link">About us &rsaquo;</a></li>
+            <li><a href="bachelor-programme.html" class="en-museum-nav-link">Bachelor Programme &rsaquo;</a></li>
+            <li><a href="#" class="en-museum-nav-link">Watch / Listen / Read &rsaquo;</a></li>
+        </ul>
+        <!-- Gallery floating icon -->
+        <!--<div class="en-gallery-widget">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5">
+                <rect x="3" y="3" width="14" height="14" rx="1" />
+                <rect x="7" y="7" width="14" height="14" rx="1" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="7 15 11 11 14 14 16 12 21 17" />
+            </svg>
+        </div>-->
+    </section>
+    <!-- SECTION 1 -->
+    <section class="container en-section">
+        <div class="row">
+            <!-- Text Column (Z-Index 2 to overlap image) -->
+            <div class="six columns en-content-layer">
+                <h2 class="en-heading">
+                    A general overview of UnADM
+                </h2>
+                <p>In 2008, the Ministry of Public Education began work to create the Universidad Abierta y a Distancia de México (UnADM). The curriculum model for the academic programs and curricula was carried out in the first half of 2009, while a technological platform was developed to serve an initial population estimated at up to 12,000 students.
+                    The first call for applications for what was known as Programa de Educación Superior Abierta y a Distancia was published on August 12, 2009, with more than 34,000 applicants.
+                    On January 20, 2012, the UnADM was officially created by presidential decree.
+                    Sitio web en español: https://www.unadmexico.mx/nosotros/mision-vision-y-objetivos </p>
+                <ul class="en-links">
+                    <li><a href="#" class="en-link">University Council &gt;</a></li>
+                    <li><a href="governance.html" class="en-link">Governance &gt;</a></li>
+                    <li><a href="#" class="en-link">Mission, Vission & Goals &#8599;</a></li>
+                    <li><a href="#" class="en-link">Curriculum Model &#8599;</a></li>
+                    <li><a href="#" class="en-link">Alumni &#8599;</a></li>
+                </ul>
+            </div>
+            <!-- Image Column with negative margin pulling it under text -->
+            <div class="six columns en-overlap-right">
+                <div class="en-reveal-box">
+                    <div class="en-parallax-wrapper">
+                        <img src="img/post_header1.jpg" alt="Art Studio Work" class="en-parallax-img" data-speed="-0.12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  Bachelor Programme -->
+    <section class="container en-section">
+        <div class="row">
+            <!-- Image Column on Left -->
+            <div class="six columns en-overlap-left">
+                <div class="en-reveal-box">
+                    <div class="en-parallax-wrapper">
+                        <img src="img/degrees.jpg" alt="Modern Gallery" class="en-parallax-img" data-speed="-0.15">
+                    </div>
+                </div>
+            </div>
+            <!-- Text Column on Right overlapping Image -->
+            <div class="six columns en-content-layer">
+                <h2 class="en-heading">
+                    Bachelor Programme
+                </h2>
+                <ul class="en-links">
+                    <li><a href="social-administrative-sciences.html" class="en-link">
+                            Division of Social & Administrative Sciences &gt;</a></li>
+                    <li><a href="#" class="en-link">Division of Exact Sciences, Engineering & Technology &gt;</a></li>
+                    <li><a href="#" class="en-link">Division of Health, Biological & Environmental Sciences &#8599;</a></li>
+                    <li><a href="#" class="en-link">Public Programs &#8599;</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION 1 -->
+    <section class="container en-section">
+        <div class="row">
+            <!-- Text Column (Z-Index 2 to overlap image) -->
+            <div class="six columns en-content-layer">
+                <h2 class="en-heading">
+                    Watch / Listen / Read
+                </h2>
+                <p>As a fully online institution, UnADM offers a flexible, immersive, and cross-disciplinary learning environment designed to connect students with high-quality higher education from anywhere.</p>
+                <ul class="en-links">
+                    <li><a href="#" class="en-link">Watch our videos &gt;</a></li>
+                    <li><a href="#" class="en-link">Read our articles &gt;</a></li>
+                    <li><a href="#" class="en-link">Listen to podcasts &#8599;</a></li>
+                    <li><a href="#" class="en-link">Extracurricular activities&#8599;</a></li>
+                </ul>
+            </div>
+            <!-- Image Column with negative margin pulling it under text -->
+            <div class="six columns en-overlap-right">
+                <div class="en-reveal-box">
+                    <div class="en-parallax-wrapper">
+                        <img src="img/podcast.gif" alt="Art Studio Work" class="en-parallax-img" data-speed="-0.12">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Offset Bottom Image in Section 1 -->
+        <div class="row" style="margin-top: 60px;">
+            <div class="two columns">&nbsp;</div>
+            <div class="five columns">
+                <div class="en-reveal-box">
+                    <div class="en-parallax-wrapper" style="height: 340px;">
+                        <img src="img/reforestacion.png" alt="Abstract Installation" class="en-parallax-img" data-speed="0.15">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION 2: SLIDESHOW CON CONTROL RESTAURADO -->
+    <section class="en-slider-section">
+        <div class="en-ticker-container" id="enTickerContainer">
+            <!-- Grupo 1 -->
+            <div class="en-ticker-group">
+                <div class="en-slide">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80" class="en-slide-img" alt="Slide 1">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Retos Ciudadanos</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <img src="img/miriam_ponce_cantero.jpg" class="en-slide-img" alt="Slide 3">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Miradas</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <video autoplay loop muted playsinline width="100%">
+                        <source src="img/retas.mp4" type="video/mp4">
+                    </video>
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Retas UnADM</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <img src="img/reforestacion.jpg" class="en-slide-img" alt="Slide 3">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Reforestación</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Grupo 2 (Bucle Infinito) -->
+            <div class="en-ticker-group" aria-hidden="true">
+                <div class="en-slide">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80" class="en-slide-img" alt="Slide 1">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">360 UnADM</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <img src="img/podcast.jpg" class="en-slide-img" alt="Slide 2">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Podcast</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80" class="en-slide-img" alt="Slide 3">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">Plan Alma</h3>
+                    </div>
+                </div>
+                <div class="en-slide">
+                    <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80" class="en-slide-img" alt="Slide 4">
+                    <div class="en-slide-overlay">
+                        <h3 class="en-slide-title">100 Técnicas Didácticas</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="en-slider-controls">
+            <div class="en-nav-group">
+                <button class="en-control-btn en-arrow-btn" id="enPrevBtn" aria-label="Previous slide">&#8592;</button>
+                <button class="en-control-btn en-arrow-btn" id="enNextBtn" aria-label="Next slide">&#8594;</button>
+            </div>
+            <button class="en-control-btn" id="enPauseBtn">
+                <span id="enPauseIcon">❚❚</span> <span id="enPauseText">Pause</span>
+            </button>
+        </div>
+    </section>
+    <!-- Footer_______________________________________________________________________________ -->
+    <section class="en-follow-section">
+        <div class="container">
+            <div class="row">
+                <!-- Columna Izquierda: Título -->
+                <div class="five columns">
+                    <h2 class="en-follow-title">Follow us</h2>
+                </div>
+                <!-- Columna Derecha: Enlaces de Redes Sociales -->
+                <div class="seven columns">
+                    <ul class="en-follow-list">
+                        <li class="en-follow-item">
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                <span>Facebook</span>
+                                <span class="en-follow-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li class="en-follow-item">
+                            <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                <span>Twitter</span>
+                                <span class="en-follow-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li class="en-follow-item">
+                            <a href="https://bsky.app" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                <span>YouTube</span>
+                                <span class="en-follow-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li class="en-follow-item">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                <span>Instagram</span>
+                                <span class="en-follow-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li class="en-follow-item">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="en-follow-link">
+                                <span>LinkedIn</span>
+                                <span class="en-follow-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                    </ul><br />
+                    For press inquiries: <a class="en_small_links" href="mailto:ivan.marin@nube.unadmexico.mx">ivan.marin@nube.unadmexico.mx</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer_______________________________________________________________________________ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const museumHero = document.querySelector('.en-museum-hero');
+        if (museumHero) {
+            requestAnimationFrame(() => {
+                museumHero.classList.add('is-ready');
+            });
+        }
+
+        /* 1. PARALLAX & REVEAL OBSERVER */
+        const parallaxImages = document.querySelectorAll('.en-parallax-img');
+        const revealBoxes = document.querySelectorAll('.en-reveal-box');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('en-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        revealBoxes.forEach(box => revealObserver.observe(box));
+
+        function updateParallax() {
+            parallaxImages.forEach(img => {
+                const speed = parseFloat(img.getAttribute('data-speed')) || 0.1;
+                const rect = img.parentElement.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const yPos = (rect.top - window.innerHeight / 2) * speed;
+                    img.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+            });
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        /* 2. TICKER CONTROLS & MANUAL NAV FIX */
+        const tickerContainer = document.getElementById('enTickerContainer');
+        const tickerGroups = document.querySelectorAll('.en-ticker-group');
+        const pauseBtn = document.getElementById('enPauseBtn');
+        const pauseIcon = document.getElementById('enPauseIcon');
+        const pauseText = document.getElementById('enPauseText');
+        const prevBtn = document.getElementById('enPrevBtn');
+        const nextBtn = document.getElementById('enNextBtn');
+
+        let isPaused = false;
+        let manualIndex = 0;
+        const slidesCount = 4;
+
+        function pauseTicker() {
+            tickerContainer.classList.add('en-paused');
+            pauseIcon.textContent = '▶';
+            pauseText.textContent = 'Play';
+            isPaused = true;
+        }
+
+        function playTicker() {
+            // Limpia traslación manual y reactiva la animación fluida en CSS
+            tickerContainer.style.transform = 'none';
+            tickerGroups.forEach(g => {
+                g.style.animation = '';
+            });
+
+            tickerContainer.classList.remove('en-paused');
+            pauseIcon.textContent = '❚❚';
+            pauseText.textContent = 'Pause';
+            isPaused = false;
+        }
+
+        // Botón Play / Pause Toggle
+        pauseBtn.addEventListener('click', () => {
+            if (!isPaused) {
+                pauseTicker();
+            } else {
+                playTicker();
+            }
+        });
+
+        // Navegación Manual con Flechas
+        function navigateToSlide(index) {
+            pauseTicker();
+
+            // Apaga temporalmente la animación continua para permitir mover por coordenadas exactas
+            tickerGroups.forEach(g => {
+                g.style.animation = 'none';
+            });
+
+            const firstSlide = tickerGroups[0].children[0];
+            const slideWidth = firstSlide.getBoundingClientRect().width;
+            const gap = 40;
+            const offset = index * (slideWidth + gap);
+
+            tickerContainer.style.transform = `translateX(-${offset}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            manualIndex = (manualIndex - 1 + slidesCount) % slidesCount;
+            navigateToSlide(manualIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            manualIndex = (manualIndex + 1) % slidesCount;
+            navigateToSlide(manualIndex);
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('en_menuBtn');
+        const megamenu = document.getElementById('en_megamenu');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const isActive = menuBtn.classList.toggle('en_active');
+            megamenu.classList.toggle('en_open', isActive);
+
+            // Bloquear el scroll de la página al abrir el menú
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+    });
+    </script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+</body>
+
+</html>

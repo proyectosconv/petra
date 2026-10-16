@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de Recursos — Repositorio Digital</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="arc_container-wide">
+        <header class="arc_header">
+            <div class="arc_brand">
+                <div class="arc_gob-logo"><img src="img/logo2.png" width="300px" alt="Logo UnADM"></div>
+            </div>
+            <nav class="arc_nav">
+                <a href="index.html">Colecciones</a>
+                <a href="acerca-de.html">Acerca de</a>
+                <a href="ayuda.html">Ayuda</a>
+            </nav>
+        </header>
+
+        <section class="arc_breadcrumb-banner">
+            <a href="index.html" class="arc_back-link">← volver_a_colecciones</a>
+        </section>
+
+        <main class="row arc_main-layout">
+            
+            <section class="eight columns">
+                <br><br>
+                <div class="arc_upload-drag-zone" id="dragZone">
+                    <input type="file" id="fileInput" class="arc_file-hidden" accept=".pdf,.mp3,.wav,.mp4,.mov" multiple>
+                    <div class="arc_upload-icon">↑</div>
+                    <div class="arc_upload-text">
+                        Arrastra y suelta tus archivos aquí o <span class="arc_text-link">selecciona desde el dispositivo</span>
+                    </div>
+                    <div class="arc_upload-formats">Formatos permitidos: PDF, MP3, WAV, MP4, MOV (Máx. 50MB por archivo)</div>
+                </div>
+
+                <div class="arc_file-progress-container" style="display: none;" id="progressContainer">
+                    <div class="arc_panel-title">Archivos en cola de procesamiento</div>
+                    <div class="arc_file-progress-row">
+                        <div class="arc_file-info">
+                            <span class="arc_badge-fmt arc_pdf">PDF</span>
+                            <span class="arc_filename" id="queuedFilename">documento_pendiente.pdf</span>
+                            <span class="arc_file-size">(4.2 MB)</span>
+                        </div>
+                        <div class="arc_file-status-text">Listo para procesar</div>
+                    </div>
+                </div>
+
+                <div class="arc_resource-info-form" style="margin-top: 32px;">
+                    <div class="arc_content-section">
+                        <h2>Metadatos Principales</h2>
+                        
+                        <div class="row">
+                            <div class="twelve columns">
+                                <label for="resourceTitle" class="arc_meta-label">Título Oficial del Recurso</label>
+                                <input class="u-full-width arc_input-text" type="text" id="resourceTitle" placeholder="Ej. Convocatoria Kilómetros por la Salud 2026">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="twelve columns">
+                                <label for="resourceDesc" class="arc_meta-label">Descripción Técnica / Resumen Informativo</label>
+                                <textarea class="u-full-width arc_input-text" id="resourceDesc" style="height: 120px;" placeholder="Describe brevemente el contenido y objetivo del documento institucional..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <aside class="four columns">
+                <div class="arc_metadata-panel">
+                    
+                    <div class="arc_panel-title">Acciones de Control</div>
+                    <button class="arc_btn-action arc_btn-primary" type="submit" id="btnSubmit">Iniciar Carga e Indexación</button>
+                    <button class="arc_btn-action arc_btn-secondary" type="button" onclick="window.location.reload();">Limpiar Formulario</button>
+                    
+                    <div class="arc_panel-title" style="margin-top: 24px;">Configuración de Depósito</div>
+                    
+                    <div class="arc_meta-group">
+                        <label for="selectProject" class="arc_meta-label">PROYECTO_ORIGEN</label>
+                        <select class="u-full-width arc_filter-select" id="selectProject">
+                            <option value="" selected disabled>SELECCIONAR PROYECTO</option>
+                            <option value="unadm-saludable">UnADM Saludable</option>
+                            <option value="retos-ciudadanos">Retos Ciudadanos 2026</option>
+                            <option value="gaceta">Gaceta Universitaria</option>
+                            <option value="memorias">Kilómetros por la Salud</option>
+                          
+                        </select>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <label for="inputTags" class="arc_meta-label">CLASIFICACIÓN_TAXONÓMICA (TAGS)</label>
+                        <input class="u-full-width arc_input-text" type="text" id="inputTags" placeholder="Ej. #Convocatoria, #Retos, #Salud">
+                        <div class="arc_upload-formats" style="margin-top: 4px;">Separa las etiquetas utilizando comas.</div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">PERMISOS_PREDETERMINADOS</div>
+                        <div class="arc_filter-option" style="margin-top: 8px;">
+                            <label><input type="checkbox" checked disabled> <span>Acceso Público Abierto</span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </main>
+
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>ESTADO_RECURSO: en_espera_de_carga</div>
+        </footer>
+    </div>
+
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <!-- Lógica del Repositorio Centralizado -->
+    <script src="js/app.js"></script>
+    
+    <script>
+        const dragZone = document.getElementById('dragZone');
+        const fileInput = document.getElementById('fileInput');
+        const progressContainer = document.getElementById('progressContainer');
+        const queuedFilename = document.getElementById('queuedFilename');
+
+        dragZone.addEventListener('click', () => fileInput.click());
+
+        dragZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dragZone.style.borderColor = 'var(--accent-institutional)';
+            dragZone.style.backgroundColor = '#fff8f9';
+        });
+
+        dragZone.addEventListener('dragleave', () => {
+            dragZone.style.borderColor = 'var(--border-color)';
+            dragZone.style.backgroundColor = '#fafafa';
+        });
+
+        dragZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dragZone.style.borderColor = 'var(--border-color)';
+            dragZone.style.backgroundColor = '#fafafa';
+            if(e.dataTransfer.files.length > 0) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files.length > 0) {
+                handleFiles(e.target.files);
+            }
+        });
+
+        function handleFiles(files) {
+            progressContainer.style.display = 'block';
+            queuedFilename.textContent = files[0].name;
+            // Automatiza el rellenado del título para mejorar UX
+            document.getElementById('resourceTitle').value = files[0].name.split('.').slice(0, -1).join('.');
+        }
+    </script>
+</body>
+</html>
