@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda — Repositorio Digital</title>
+    
+    <!-- Skeleton Framework via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+      <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+
+    
+</head>
+<body>
+
+    <div class="arc_container-wide">
+        <!-- CABECERA -->
+        <header class="arc_header">
+            <div class="arc_brand">
+                <div class="arc_gob-logo"><img src="img/logo2.png" width="300px"></div>
+            </div>
+            <nav class="arc_nav">
+                <a href="index.html">Colecciones</a>
+                <a href="acerca-de.html">Acerca de</a>
+                <a href="ayuda.html" class="arc_active">Ayuda</a>
+            </nav>
+        </header>
+
+        <!-- BANNER DE TÍTULO -->
+        <section class="arc_page-banner">
+            <h1 class="arc_page-title">archivo_UnADM / centro_ayuda</h1>
+            <p class="arc_page-subtitle">Documentación técnica de operaciones de búsqueda y recuperación de recursos.</p>
+        </section>
+
+        <!-- LAYOUT SKELETON -->
+        <main class="row arc_main-layout">
+            
+            <!-- PANEL LATERAL (3 Columnas) -->
+            <aside class="three columns arc_sidebar-nav">
+                <div class="arc_sidebar-title">Índice de Ayuda</div>
+                <ul class="arc_sidebar-menu">
+                    <li><a href="#busqueda">1. Motor de Búsqueda</a></li>
+                    <li><a href="#facetas">2. Filtrado Facetado</a></li>
+                    <li><a href="#descarga">3. Descargas masivas</a></li>
+                </ul>
+            </aside>
+
+            <!-- CONTENIDO CENTRAL (9 Columnas) -->
+            <section class="nine columns">
+                
+                <div id="busqueda" class="arc_content-section">
+                    <h2>1. Motor de Búsqueda</h2>
+                    <p>La consola técnica en la pantalla principal permite realizar queries estructurados bajo tres modos definidos en el conmutador de alcance:</p>
+                    <ul class="arc_bullet-list">
+                        <li><strong>Todos los campos:</strong> Barre metadatos indexados incluyendo tags y descripciones cruzadas.</li>
+                        <li><strong>Título:</strong> Limita la coincidencia al nombre de archivo normalizado en el sistema.</li>
+                        <li><strong>ID:</strong> Recuperación instantánea ingresando el código alfanumérico exacto del recurso.</li>
+                    </ul>
+                    <p>Ejemplo de estructura limpia para cadenas de texto:</p>
+                    <div class="arc_code-box">Buscar: "Ricardo Villanueva" -> Devuelve coincidencias semánticas e indexadas en metadatos.</div>
+                </div>
+
+                <div id="facetas" class="arc_content-section">
+                    <h2>2. Filtrado Facetado</h2>
+                    <p>El panel de control lateral izquierdo ejecuta exclusión en tiempo real estructurando los datos en tres clústeres primarios:</p>
+                    <ul class="arc_bullet-list">
+                        <li><strong>Año:</strong> Agrupa por fecha de inserción y registro fiscal del entregable.</li>
+                        <li><strong>Tema:</strong> Clasificación temática bajo taxonomías validadas institucionales (#Educación, #Salud, etc.).</li>
+                        <li><strong>Formato:</strong> Aislamiento de ficheros de acuerdo al tipo MIME encapsulado por el sistema contenedor.</li>
+                    </ul>
+                </div>
+
+                <div id="descarga" class="arc_content-section">
+                    <h2>3. Soporte y Descarga de Recursos</h2>
+                    <p>Al hacer clic sobre el título de un archivo en la grilla de datos principal, se abrirá el gestor de descarga integrado. Los archivos de audio en formato <span style="font-family: var(--font-mono);">MP3</span> e imágenes se previsualizan directamente de forma nativa en el navegador para optimizar el rendimiento de la red local.</p>
+                    <p>Si experimenta problemas de asincronía en las cargas de la tabla, limpie el caché local o verifique la persistencia de los servicios del Core Central de Datos de la UnADM.</p>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>SOPORTE_TÉCNICO: soporte.repositorio@unadmexico.mx</div>
+        </footer>
+    </div>
+
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+</body>
+</html>

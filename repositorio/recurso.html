@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Recurso — Repositorio Digital</title>
+    
+    <!-- Skeleton Framework via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+     <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+
+   
+</head>
+<body>
+
+    <div class="arc_container-wide">
+        <!-- CABECERA -->
+        <header class="arc_header">
+            <div class="arc_brand">
+                <div class="arc_gob-logo"><img src="img/logo2.png" width="300px"></div>
+            </div>
+            <nav class="arc_nav">
+                <a href="index.html">Colecciones</a>
+                <a href="acerca-de.html">Acerca de</a>
+                <a href="ayuda.html">Ayuda</a>
+            </nav>
+        </header>
+
+        <!-- BREADCRUMB / RETORNO -->
+        <section class="arc_breadcrumb-banner">
+            <a href="index.html" class="arc_back-link">← volver_a_colecciones</a>
+        </section>
+
+        <!-- LAYOUT SKELETON (2 Columnas Asimétricas) -->
+        <main class="row arc_main-layout">
+            
+            <!-- COLUMNA IZQUIERDA: PREVISUALIZACIÓN Y CONTENIDO (8 Columnas) -->
+            <section class="eight columns">
+                
+                <!-- Contenedor del Reproductor / Visor -->
+                <div class="arc_preview-box">
+                    <!-- Icono técnico del tipo de archivo (Audio) -->
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-secondary); margin-bottom: 8px;">
+                        <path d="M9 18V5l12-2v13"></path>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="18" cy="16" r="3"></circle>
+                    </svg>
+                    <div style="font-family: var(--font-mono); font-size: 1.2rem; color: var(--text-secondary);">PREVISUALIZACIÓN_NATIVA_MP3</div>
+                    
+                    <!-- Reproductor de audio HTML5 estándar -->
+                    <audio class="arc_audio-player" controls>
+                        <source src="https://www.unadmexico.mx/podcast/media/en_voz_alta/en_voz_alta_02_22102025.mp3" type="audio/mpeg">
+                        Tu navegador no soporta la reproducción de este elemento de audio.
+                    </audio>
+                </div>
+
+                <!-- Detalles e información textual del recurso -->
+                <div class="arc_resource-info">
+                    <h1>UNA_2026_AUD_042.mp3</h1>
+                    <p class="arc_resource-description">
+                        En Voz Alta Episodio 01 Temporada 04
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- COLUMNA DERECHA: PANEL DE CONTROL Y METADATOS (4 Columnas) -->
+            <aside class="four columns">
+                <div class="arc_metadata-panel">
+                    
+                    <div class="arc_panel-title">Acciones de Archivo</div>
+                    <a href="https://www.unadmexico.mx/podcast/media/en_voz_alta/en_voz_alta_02_22102025.mp3" download class="arc_btn-action arc_btn-primary" target="_blank">Descargar Recurso</a>
+                    <button class="arc_btn-action arc_btn-secondary" onclick="window.print()">Imprimir Ficha</button>
+                    
+                    <div class="arc_panel-title" style="margin-top: 24px;">Especificaciones</div>
+                    
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">ID_RECURSO</div>
+                        <div class="arc_meta-value" style="font-family: var(--font-mono); font-weight: 600;">UNA_2026_AUD_042</div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">PROYECTO_ORIGEN</div>
+                        <div class="arc_meta-value">Pódcast UnADM</div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">FORMATO_MIME</div>
+                        <div class="arc_meta-value"><span class="arc_badge">audio/mpeg (mp3)</span></div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">PESO_ARCHIVO</div>
+                        <div class="arc_meta-value">18.4 MB</div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">FECHA_REGISTRO</div>
+                        <div class="arc_meta-value" style="font-family: var(--font-mono);">2026-03-14 11:24:02</div>
+                    </div>
+
+                    <div class="arc_meta-group">
+                        <div class="arc_meta-label">CLASIFICACIÓN_TAXONÓMICA</div>
+                        <div class="arc_tag-container">
+                            <span class="arc_tag">#Multimedia</span>
+                            <span class="arc_tag">#PodcastUnADM</span>
+                            <span class="arc_tag">#UnADM</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </main>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>ESTADO_RECURSO: verificado_y_público</div>
+        </footer>
+    </div>
+
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accessibility.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <!-- Lógica del Repositorio Centralizado -->
+    <script src="js/app.js"></script>
+</body>
+</html>

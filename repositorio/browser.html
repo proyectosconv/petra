@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>archivo UnADM/ — Repositorio Digital </title>
+    <!-- Skeleton Framework via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css/arc.css">
+    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="arc_container-wide">
+        <!-- CABECERA -->
+        <header class="arc_header">
+            <div class="arc_brand">
+                <div class="arc_gob-logo"> <img src="img/logo2.png" width="300px"></div>
+            </div>
+            <nav class="arc_nav">
+                <a href="index.html">Colecciones</a>
+                <a href="acerca-de.html">Acerca de</a>
+                <a href="ayuda.html">Ayuda</a>
+            </nav>
+        </header>
+        <!-- CONSOLA DE BÚSQUEDA -->
+        <section class="arc_search-console">
+            <div class="arc_search-bar-container">
+                <input type="text" class="arc_search-input" placeholder="Buscar por palabra clave, título, ID...">
+                <button class="arc_search-button">Buscar</button>
+            </div>
+            <div class="arc_active-facets">
+                <span class="arc_facet-label">Sin filtros activos</span>
+            </div>
+        </section>
+        <!-- LAYOUT SKELETON: Row con columnas 3 y 9 -->
+        <main class="row arc_main-layout">
+            <!-- PANEL LATERAL (3 Columnas Skeleton) -->
+            <aside class="three columns arc_sidebar-filters">
+        
+        <div class="arc_sidebar-filters">
+            <div class="arc_filter-section">
+                <h4 class="arc_filter-title">▼ AÑO</h4>
+                <label><input type="checkbox" id="cbYearAll" value="all"> <strong>Todos</strong></label>
+                <div id="yearFacetOptions" class="arc_facet-options"></div>
+            </div>
+
+            <div class="arc_filter-section">
+                <h4 class="arc_filter-title">▼ TEMA</h4>
+                <label><input type="checkbox" id="cbThemeAll" value="all"> <strong>Todos</strong></label>
+                <div id="tagFacetOptions" class="arc_facet-options"></div>
+            </div>
+
+            <div class="arc_filter-section">
+                <h4 class="arc_filter-title">▼ FORMATO</h4>
+                <label><input type="checkbox" id="cbFormatAll" value="all"> <strong>Todos</strong></label>
+                <div id="typeFacetOptions" class="arc_facet-options"></div>
+            </div>
+            <button type="button" id="btnClearFilters" class="arc_btn-clear">[LIMPIAR]</button>
+        </div>
+            </aside>
+            <!-- RESULTADOS (9 Columnas Skeleton) -->
+            <section class="nine columns">
+                <div class="arc_results-header">
+                    <div class="arc_results-count">Mostrando <strong>1 - 4</strong> de <strong>556</strong> archivos</div>
+                    <div>
+                        <span style="font-size: 1.2rem; color: var(--text-secondary); margin-right: 8px;">Ordenar por:</span>
+                        <select class="arc_sort-select">
+                            <option>Más recientes primero</option>
+                            <option>Más viejos primero</option>
+                            <option>Relevancia</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Skeleton incluye .u-full-width para tablas fluidas -->
+                <div class="arc_table-responsive">
+                <table class="u-full-width arc_data-table">
+                    <thead>
+                        <tr>
+                            <th>THUMBNAIL</th>
+                            <th>ID_RECURSO</th>
+                            <th>TÍTULO DEL ARCHIVO / METADATOS</th>
+                            <th>PROYECTO_ORIGEN</th>
+                            <th>AÑO</th>
+                            <th>FORMATO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS inyectará los datos aquí -->
+                    </tbody>
+                   <!-- <tbody>
+                        <tr>
+                            <td class="arc_td-thumb"><img src="docs/Ceremonia_UnADM_Julio_2025_VBM_106.jpg" alt="Miniatura del archivo" class="arc_thumb"></td>
+                            <td class="arc_td-id">UNA_0234</td>
+                            <td>
+                                <div class="arc_td-title">Podcast T2 E1: Entrevista con Ricardo Villanueva</div>
+                                <span class="arc_tag">#Educación</span><span class="arc_tag">#Entrevistas</span>
+                            </td>
+                            <td class="arc_td-project">Pódcast UnADM</td>
+                            <td class="arc_td-year">2026</td>
+                            <td><span class="arc_badge-fmt arc_mp3">MP3</span></td>
+                        </tr>
+                        <tr>
+                            <td class="arc_td-thumb"><img src="docs/Ceremonia_UnADM_Julio_2025_VBM_112 (1).jpg" alt="Miniatura del archivo" class="arc_thumb"></td>
+                            <td class="arc_td-id">UNA_0233</td>
+                            <td>
+                                <div class="arc_td-title">Semana de Educación Financiera 2025 — Inauguración</div>
+                                <span class="arc_tag">#Foros</span><span class="arc_tag">#Economía</span>
+                            </td>
+                            <td class="arc_td-project">SNEF</td>
+                            <td class="arc_td-year">2025</td>
+                            <td><span class="arc_badge-fmt arc_pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td class="arc_td-thumb"><img src="docs/KM_porla_salud_cdmx25_TV_35.jpg" alt="Miniatura del archivo" class="arc_thumb"></td>
+                            <td class="arc_td-id">UNA_0232</td>
+                            <td>
+                                <div class="arc_td-title">¡Lo logramos! Kilómetros por la Salud 2025</div>
+                                <span class="arc_tag">#Salud</span><span class="arc_tag">#Deporte</span>
+                            </td>
+                            <td class="arc_td-project">UnADM Saludable</td>
+                            <td class="arc_td-year">2025</td>
+                            <td><span class="arc_badge-fmt arc_mp4">MP4</span></td>
+                        </tr>
+                        <tr>
+                            <td class="arc_td-thumb"><img src="docs/Reforestación UnADM_5.jpg" alt="Miniatura del archivo" class="arc_thumb"></td>
+                            <td class="arc_td-id">UNA_0231</td>
+                            <td>
+                                <div class="arc_td-title">Jornada Nacional de Reforestación — Registro de Audio</div>
+                                <span class="arc_tag">#MedioAmbiente</span>
+                            </td>
+                            <td class="arc_td-project">Retos Ciudadanos</td>
+                            <td class="arc_td-year">2025</td>
+                            <td><span class="arc_badge-fmt arc_mp3">MP3</span></td>
+                        </tr>
+                    </tbody>-->
+                </table>
+            </section>
+        </main>
+        <footer class="arc_footer">
+            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
+            <div>MÉTRICAS_TOTALES: [556 audios] / [456 documentos] / [5,467 videos]</div>
+        </footer>
+    </div>
+    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
+    <!-- Lógica del Repositorio Centralizado -->
+    <script src="js/app.js"></script>
+</body>
+
+
+</html>
