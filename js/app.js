@@ -27,7 +27,7 @@ const CATALOG_YEARS = Array.from({ length: 15 }, (_, index) => String(2012 + ind
 const CATALOG_THEMES = ['Educación', 'Salud', 'Tecnología', 'Medio ambiente'];
 const COMMON_FORMATS = [
     'mp3', 'wav', 'aac', 'mp4', 'mov', 'avi',
-    'jpg', 'jpeg', 'png', 'gif', 'webp',
+    'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg',
     'pdf', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'csv'
 ];
 const THEME_KEYWORDS = {
@@ -48,6 +48,7 @@ const MIME_FORMATS = {
     'image/png': 'png',
     'image/gif': 'gif',
     'image/webp': 'webp',
+    'image/svg+xml': 'svg',
     'application/pdf': 'pdf'
 };
 
@@ -65,14 +66,36 @@ function getRecordFormat(item) {
     return '';
 }
 
+const FORMAT_MIME_TYPES = {
+    aac: 'audio/aac',
+    avi: 'video/x-msvideo',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    gif: 'image/gif',
+    jpeg: 'image/jpeg',
+    jpg: 'image/jpeg',
+    mp3: 'audio/mpeg',
+    mp4: 'video/mp4',
+    mov: 'video/quicktime',
+    pdf: 'application/pdf',
+    png: 'image/png',
+    ppt: 'application/vnd.ms-powerpoint',
+    pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    svg: 'image/svg+xml',
+    wav: 'audio/wav',
+    webp: 'image/webp',
+    xls: 'application/vnd.ms-excel',
+    xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+};
+
 function recordMatchesTheme(item, theme) {
-    const keywords = THEME_KEYWORDS[normalizeFacetValue(theme)] || [];
     const text = normalizeFacetValue([
         item.titulo,
         item.proyecto,
         item.descripcion,
         ...(Array.isArray(item.tags) ? item.tags : [])
     ].join(' '));
+    const keywords = THEME_KEYWORDS[normalizeFacetValue(theme)] || [];
     return keywords.some(keyword => text.includes(normalizeFacetValue(keyword)));
 }
 
@@ -80,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detección de la vista activa según el nombre del archivo en la URL
     const path = window.location.pathname;
 
-    if (path.endsWith('/') || path.includes('index.html')) {
+    if (path.endsWith('/') || path.includes('index.html') || path.includes('index-alternativo.html')) {
         // Landing inicial con la barra central de búsqueda
         initLandingPage();
     } else if (path.includes('browser.html')) {
@@ -170,17 +193,31 @@ function renderCatalogFacets(data) {
 // 2. VISTA LANDING / INICIO (index.html)
 // =========================================================================
 async function initLandingPage() {
-    const input = document.querySelector('.arc_search-input');
-    const button = document.querySelector('.arc_search-button');
-    const selects = document.querySelectorAll('.arc_filter-select');
+    const input = document.querySelector('.arc_search-input, .strm_arc_search-input');
+    const button = document.querySelector('.arc_search-button, .strm_arc_search-button');
+    const selects = document.querySelectorAll('.arc_filter-select, .strm_arc_filter-select');
+    const filterOptionGroups = document.querySelectorAll('.strm_filter-options');
+    const filtersToggle = document.querySelector('.strm_filters-toggle');
+    const filtersPanel = document.getElementById('strm-search-filters');
+
+    if (filtersToggle && filtersPanel) {
+        filtersToggle.addEventListener('click', () => {
+            const isExpanded = filtersToggle.getAttribute('aria-expanded') === 'true';
+            filtersToggle.setAttribute('aria-expanded', String(!isExpanded));
+            filtersPanel.hidden = isExpanded;
+            filtersToggle.textContent = isExpanded ? '+ Agregar filtros' : '− Ocultar filtros';
+        });
+    }
+
     const data = await getRepositoryData();
 
     selects.forEach(select => {
         const firstOptionText = (select.options[0]?.text || '').toUpperCase();
+        const filterType = (select.dataset.filterType || firstOptionText).toUpperCase();
         let values = [];
-        if (firstOptionText.includes('AÑO')) values = CATALOG_YEARS;
-        else if (firstOptionText.includes('TEMA')) values = CATALOG_THEMES;
-        else if (firstOptionText.includes('FORMATO')) {
+        if (filterType.includes('ANIO') || filterType.includes('AÑO')) values = CATALOG_YEARS;
+        else if (filterType.includes('TEMA')) values = CATALOG_THEMES;
+        else if (filterType.includes('FORMATO')) {
             const discoveredFormats = data.map(getRecordFormat).filter(Boolean);
             values = [...new Set([...COMMON_FORMATS, ...discoveredFormats])]
                 .sort((a, b) => a.localeCompare(b, 'es'));
@@ -191,6 +228,49 @@ async function initLandingPage() {
         values.forEach(value => select.add(new Option(value, value)));
     });
 
+    filterOptionGroups.forEach(group => {
+        const filterType = group.dataset.filterType;
+        let values = [];
+        if (filterType === 'anio') values = CATALOG_YEARS;
+        else if (filterType === 'tema') values = CATALOG_THEMES;
+        else if (filterType === 'formato') {
+            const discoveredFormats = data.map(getRecordFormat).filter(Boolean);
+            values = [...new Set([...COMMON_FORMATS, ...discoveredFormats])]
+                .sort((a, b) => a.localeCompare(b, 'es'));
+        }
+
+        const options = ['all', ...values];
+        group.replaceChildren();
+        options.forEach(value => {
+            const label = document.createElement('label');
+            label.className = 'strm_filter-option';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = value;
+            checkbox.checked = value === 'all';
+            checkbox.setAttribute('aria-label', value === 'all' ? 'Todos' : value);
+
+            const text = document.createElement('span');
+            text.textContent = value === 'all' ? 'Todos' : value;
+            label.append(checkbox, text);
+            group.appendChild(label);
+
+            checkbox.addEventListener('change', () => {
+                const groupCheckboxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));
+                const allCheckbox = groupCheckboxes[0];
+                if (checkbox === allCheckbox && checkbox.checked) {
+                    groupCheckboxes.slice(1).forEach(option => { option.checked = false; });
+                } else {
+                    allCheckbox.checked = false;
+                    if (!groupCheckboxes.slice(1).some(option => option.checked)) {
+                        allCheckbox.checked = true;
+                    }
+                }
+            });
+        });
+    });
+
     function executeSearch() {
         const query = input ? input.value.trim() : '';
         const params = new URLSearchParams();
@@ -199,14 +279,22 @@ async function initLandingPage() {
             params.append('q', query);
         }
 
-        // Send only actual filter choices; "all" means no filter.
+        // Keep "all" explicit so the catalog can reflect the landing-page selection.
         selects.forEach(select => {
             const val = (select.value || '').trim();
-            if (!val || val.toLowerCase() === 'all') return;
             const firstOptionText = (select.options[0] && select.options[0].text || '').toUpperCase();
-            if (firstOptionText.includes('AÑO')) params.append('anio', val);
-            if (firstOptionText.includes('TEMA')) params.append('tema', val);
-            if (firstOptionText.includes('FORMATO')) params.append('formato', val);
+            const filterType = (select.dataset.filterType || firstOptionText).toUpperCase();
+            if (!val) return;
+            if (filterType.includes('ANIO') || filterType.includes('AÑO')) params.set('anio', val);
+            if (filterType.includes('TEMA')) params.set('tema', val);
+            if (filterType.includes('FORMATO')) params.set('formato', val);
+        });
+
+        filterOptionGroups.forEach(group => {
+            const param = group.dataset.filterType;
+            const selectedValues = Array.from(group.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(checkbox => checkbox.value);
+            selectedValues.forEach(value => params.append(param, value));
         });
 
         // Debug: log selected values and params so we can trace issues
@@ -246,13 +334,52 @@ async function initCatalogPage() {
     const resultsCount = document.querySelector('.arc_results-count');
     const sortSelect = document.querySelector('.arc_sort-select');
     const activeFacetsContainer = document.querySelector('.arc_active-facets');
+    const pagination = document.querySelector('.arc_pagination');
+    const paginationStatus = document.querySelector('.arc_pagination-status');
+    const previousPageButton = document.querySelector('.arc_pagination-previous');
+    const nextPageButton = document.querySelector('.arc_pagination-next');
+    const pageSize = 50;
+    let currentPage = 1;
+    let searchDebounce;
+    const normalizeStr = normalizeFacetValue;
+    const catalogRecords = data.map(item => ({
+        item,
+        searchFields: [
+            item.titulo,
+            item.id,
+            item.proyecto,
+            ...(Array.isArray(item.tags) ? item.tags : [])
+        ].map(normalizeStr),
+        themeText: normalizeStr([
+            item.titulo,
+            item.proyecto,
+            item.descripcion,
+            ...(Array.isArray(item.tags) ? item.tags : [])
+        ].join(' ')),
+        year: String(item.anio ?? ''),
+        format: getRecordFormat(item),
+        registeredAt: new Date(item.fecha_registro || 0).getTime()
+    }));
+
+    if (tableBody) {
+        tableBody.addEventListener('click', event => {
+            if (event.target.closest('a, button, input')) return;
+            const row = event.target.closest('tr[data-resource-url]');
+            if (row) window.location.href = row.dataset.resourceUrl;
+        });
+        tableBody.addEventListener('keydown', event => {
+            if (event.key !== 'Enter' || event.target.tagName !== 'TR') return;
+            const row = event.target.closest('tr[data-resource-url]');
+            if (row) window.location.href = row.dataset.resourceUrl;
+        });
+    }
 
     // Leer parámetros de la URL enviados desde index.html
     const urlParams = new URLSearchParams(window.location.search);
     const initialQuery = urlParams.get('q') || '';
-    const initialAnio = urlParams.get('anio') || '';
-    const initialTema = urlParams.get('tema') || '';
-    const initialFormato = urlParams.get('formato') || '';
+    const initialAnio = urlParams.getAll('anio');
+    const initialTema = urlParams.getAll('tema');
+    const initialFormato = urlParams.getAll('formato');
 
     console.log('initCatalogPage - URL params:', urlParams.toString());
     console.log('initCatalogPage - initialAnio,tema,formato:', initialAnio, initialTema, initialFormato);
@@ -264,10 +391,12 @@ async function initCatalogPage() {
     // Marcar automáticamente las casillas laterales según lo seleccionado en index.html
     syncUrlFiltersToSidebar(initialAnio, initialTema, initialFormato);
 
-    const normalizeStr = normalizeFacetValue;
-
     // Función principal de filtrado y renderizado
-    function filterAndRender() {
+    function filterAndRender(resetPage = true) {
+        clearTimeout(searchDebounce);
+        searchDebounce = undefined;
+        if (resetPage) currentPage = 1;
+
         const query = searchInput ? searchInput.value.trim() : '';
         const normalizedQuery = normalizeStr(query);
 
@@ -280,20 +409,20 @@ async function initCatalogPage() {
             ? [] : Array.from(document.querySelectorAll('.cb-format-item:checked')).map(cb => cb.value);
 
         // Filtrado de la base de datos
-        let filtered = data.filter(item => {
+        let filtered = catalogRecords.filter(record => {
             const matchQuery = !normalizedQuery ||
-                normalizeStr(item.titulo).includes(normalizedQuery) ||
-                normalizeStr(item.id).includes(normalizedQuery) ||
-                normalizeStr(item.proyecto).includes(normalizedQuery) ||
-                (item.tags && item.tags.some(tag => normalizeStr(tag).includes(normalizedQuery)));
+                record.searchFields.some(field => field.includes(normalizedQuery));
 
-            const matchYear = checkedYears.length === 0 || checkedYears.includes(String(item.anio));
+            const matchYear = checkedYears.length === 0 || checkedYears.includes(record.year);
 
             const matchTheme = checkedThemes.length === 0 ||
-                checkedThemes.some(theme => recordMatchesTheme(item, theme));
+                checkedThemes.some(theme => {
+                    const keywords = THEME_KEYWORDS[normalizeStr(theme)] || [];
+                    return keywords.some(keyword => record.themeText.includes(normalizeStr(keyword)));
+                });
 
             const matchFormat = checkedFormats.length === 0 ||
-                checkedFormats.includes(getRecordFormat(item));
+                checkedFormats.includes(record.format);
 
             return matchQuery && matchYear && matchTheme && matchFormat;
         });
@@ -302,102 +431,89 @@ async function initCatalogPage() {
         if (sortSelect) {
             const sortVal = sortSelect.value;
             if (sortVal.includes('recientes')) {
-                filtered.sort((a, b) => new Date(b.fecha_registro || 0) - new Date(a.fecha_registro || 0));
+                filtered.sort((a, b) => b.registeredAt - a.registeredAt);
             } else if (sortVal.includes('viejos')) {
-                filtered.sort((a, b) => new Date(a.fecha_registro || 0) - new Date(b.fecha_registro || 0));
+                filtered.sort((a, b) => a.registeredAt - b.registeredAt);
             }
         }
 
-        // Actualizar contador superior
-        if (resultsCount) {
-            resultsCount.innerHTML = `Mostrando <strong>${filtered.length}</strong> resultados de <strong>${data.length}</strong> archivos`;
-        }
+        const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+        currentPage = Math.min(currentPage, pageCount);
+        const startIndex = (currentPage - 1) * pageSize;
+        const pageResults = filtered.slice(startIndex, startIndex + pageSize);
+        const firstResult = filtered.length === 0 ? 0 : startIndex + 1;
+        const lastResult = Math.min(startIndex + pageSize, filtered.length);
 
-        // Dibujar filas de la tabla y chips de filtros
-        renderTableRows(filtered, tableBody);
+        // Actualizar contador y controles de página
+        if (resultsCount) {
+            resultsCount.innerHTML = filtered.length
+                ? `Mostrando <strong>${firstResult} - ${lastResult}</strong> de <strong>${filtered.length}</strong> resultados (${data.length} archivos en el catálogo)`
+                : `Mostrando <strong>0</strong> resultados (${data.length} archivos en el catálogo)`;
+        }
+        if (pagination) pagination.hidden = filtered.length <= pageSize;
+        if (paginationStatus) paginationStatus.textContent = `Página ${currentPage} de ${pageCount}`;
+        if (previousPageButton) previousPageButton.disabled = currentPage <= 1;
+        if (nextPageButton) nextPageButton.disabled = currentPage >= pageCount;
+
+        // Dibujar únicamente la página actual para evitar crear cientos de filas a la vez.
+        renderTableRows(pageResults.map(record => record.item), tableBody);
         renderActiveChips(query, checkedYears, checkedThemes, checkedFormats, activeFacetsContainer, filterAndRender);
     }
 
     // Escuchadores de eventos
     if (searchButton) searchButton.addEventListener('click', filterAndRender);
     if (searchInput) {
-        searchInput.addEventListener('input', filterAndRender);
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchDebounce);
+            searchDebounce = setTimeout(() => filterAndRender(), 180);
+        });
         searchInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') filterAndRender();
         });
     }
     if (sortSelect) sortSelect.addEventListener('change', filterAndRender);
-
-    // Attach change listeners to all sidebar checkboxes (including years)
-    document.querySelectorAll('.arc_sidebar-filters input[type="checkbox"]').forEach(cb => {
-        cb.addEventListener('change', filterAndRender);
-    });
-
-    // Handle "Todos los años" checkbox behavior
-    const cbYearAll = document.getElementById('cbYearAll');
-    const yearCheckboxes = Array.from(document.querySelectorAll('.cb-year-item'));
-
-    if (cbYearAll) {
-        cbYearAll.addEventListener('change', (e) => {
-            const checked = e.target.checked;
-            yearCheckboxes.forEach(ycb => ycb.checked = checked);
-            filterAndRender();
+    if (previousPageButton) {
+        previousPageButton.addEventListener('click', () => {
+            currentPage--;
+            filterAndRender(false);
+        });
+    }
+    if (nextPageButton) {
+        nextPageButton.addEventListener('click', () => {
+            currentPage++;
+            filterAndRender(false);
         });
     }
 
-    // When individual year boxes change, keep "Todos los años" in sync
-    yearCheckboxes.forEach(ycb => {
-        ycb.addEventListener('change', () => {
-            if (!cbYearAll) return;
-            const allSelected = yearCheckboxes.every(item => item.checked);
-            cbYearAll.checked = allSelected;
+    function bindSelectAll(masterId, optionSelector) {
+        const master = document.getElementById(masterId);
+        const options = Array.from(document.querySelectorAll(optionSelector));
+
+        master?.addEventListener('change', () => {
+            options.forEach(option => {
+                option.checked = master.checked;
+            });
             filterAndRender();
         });
-    });
 
-    // === Tema (select all) ===
-    const cbThemeAll = document.getElementById('cbThemeAll');
-    const themeCheckboxes = Array.from(document.querySelectorAll('.cb-theme-item'));
-
-    if (cbThemeAll) {
-        cbThemeAll.addEventListener('change', (e) => {
-            const checked = e.target.checked;
-            themeCheckboxes.forEach(tcb => tcb.checked = checked);
-            filterAndRender();
-        });
-    }
-
-    themeCheckboxes.forEach(tcb => {
-        tcb.addEventListener('change', () => {
-            if (!cbThemeAll) return;
-            cbThemeAll.checked = themeCheckboxes.every(item => item.checked);
-            filterAndRender();
-        });
-    });
-
-    // === Formato (select all) ===
-    const cbFormatAll = document.getElementById('cbFormatAll');
-    const formatCheckboxes = Array.from(document.querySelectorAll('.cb-format-item'));
-
-    if (cbFormatAll) {
-        cbFormatAll.addEventListener('change', (e) => {
-            const checked = e.target.checked;
-            formatCheckboxes.forEach(fcb => fcb.checked = checked);
-            filterAndRender();
+        options.forEach(option => {
+            option.addEventListener('change', () => {
+                if (master) {
+                    master.checked = options.length > 0 && options.every(item => item.checked);
+                }
+                filterAndRender();
+            });
         });
     }
 
-    formatCheckboxes.forEach(fcb => {
-        fcb.addEventListener('change', () => {
-            if (!cbFormatAll) return;
-            cbFormatAll.checked = formatCheckboxes.every(item => item.checked);
-            filterAndRender();
-        });
-    });
+    bindSelectAll('cbYearAll', '.cb-year-item');
+    bindSelectAll('cbThemeAll', '.cb-theme-item');
+    bindSelectAll('cbFormatAll', '.cb-format-item');
 
     const btnClear = document.getElementById('btnClearFilters');
     if (btnClear) {
         btnClear.addEventListener('click', () => {
+            clearTimeout(searchDebounce);
             document.querySelectorAll('.arc_sidebar-filters input[type="checkbox"]')
                 .forEach(checkbox => checkbox.checked = false);
             if (searchInput) searchInput.value = '';
@@ -423,21 +539,22 @@ async function initCatalogPage() {
 // Sincroniza la URL inicial con las casillas del panel lateral de forma exacta
 function syncUrlFiltersToSidebar(anio, tema, formato) {
     const normalize = normalizeFacetValue;
-    if (anio && normalize(anio) !== 'all') {
-        document.querySelectorAll('.cb-year-item').forEach(cb => {
-            cb.checked = normalize(cb.value) === normalize(anio);
+    [
+        { value: anio, masterId: 'cbYearAll', selector: '.cb-year-item' },
+        { value: tema, masterId: 'cbThemeAll', selector: '.cb-theme-item' },
+        { value: formato, masterId: 'cbFormatAll', selector: '.cb-format-item' }
+    ].forEach(({ value, masterId, selector }) => {
+        const values = (Array.isArray(value) ? value : [value]).filter(Boolean);
+        if (values.length === 0) return;
+
+        const isAll = values.some(item => normalize(item) === 'all');
+        const master = document.getElementById(masterId);
+        const options = document.querySelectorAll(selector);
+        options.forEach(option => {
+            option.checked = isAll || values.some(item => normalize(option.value) === normalize(item));
         });
-    }
-    if (tema && normalize(tema) !== 'all') {
-        document.querySelectorAll('.cb-theme-item').forEach(cb => {
-            cb.checked = normalize(cb.value) === normalize(tema);
-        });
-    }
-    if (formato && normalize(formato) !== 'all') {
-        document.querySelectorAll('.cb-format-item').forEach(cb => {
-            cb.checked = normalize(cb.value) === normalize(formato);
-        });
-    }
+        if (master) master.checked = isAll;
+    });
 }
 
 // Renderiza las filas dinámicas dentro del <tbody> de la tabla
@@ -590,9 +707,7 @@ function renderTableRows(items, container) {
     }
 
     container.innerHTML = items.map(item => {
-        const detailPage = (item.tipo === 'documento' || item.formato === 'pdf')
-            ? 'recurso-pdf.html' : 'recurso.html';
-        const detailUrl = `${detailPage}?id=${encodeURIComponent(String(item.id ?? ''))}`;
+        const detailUrl = `recurso.html?id=${encodeURIComponent(String(item.id ?? ''))}`;
         const tagsHtml = (item.tags || []).map(t => {
             const tag = String(t);
             const tagSearchUrl = `browser.html?q=${encodeURIComponent(tag)}`;
@@ -601,11 +716,11 @@ function renderTableRows(items, container) {
         const badgeClass = `arc_${escapeHTML(String(item.formato || 'pdf').toLowerCase())}`;
         const thumbUrl = getThumbForItem(item);
         const thumbMarkup = thumbUrl
-            ? `<img src="${escapeHTML(thumbUrl)}" alt="Miniatura del archivo" class="arc_thumb">`
+            ? `<img src="${escapeHTML(thumbUrl)}" alt="Miniatura del archivo" class="arc_thumb" loading="lazy" decoding="async">`
             : `<span class="arc_thumb-placeholder">no encontrado</span>`;
 
         return `
-            <tr>
+            <tr data-resource-url="${escapeHTML(detailUrl)}" tabindex="0" role="link" aria-label="Ver recurso: ${escapeHTML(item.titulo)}">
                 <td class="arc_td-thumb">${thumbMarkup}</td>
                 <td class="arc_td-id">${escapeHTML(item.id)}</td>
                 <td>
@@ -690,57 +805,113 @@ function uncheckSidebarOption(sectionIndex, value) {
 async function initDetailPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const resourceId = urlParams.get('id');
-
-    if (!resourceId) return;
-
     const data = await getRepositoryData();
-    const item = data.find(r => r.id === resourceId);
+    const item = data.find(record => String(record.id) === resourceId);
+    const preview = document.getElementById('resourcePreview');
 
     if (!item) {
-        console.warn(`Recurso con ID ${resourceId} no fue encontrado.`);
+        if (preview) {
+            preview.textContent = resourceId
+                ? 'No se encontró el recurso solicitado.'
+                : 'Selecciona un recurso desde el catálogo para consultar sus detalles.';
+            preview.classList.add('arc_preview-message');
+        }
         return;
     }
 
-    // Inyección de títulos e información general
     const titleEl = document.querySelector('.arc_resource-info h1');
     const descEl = document.querySelector('.arc_resource-description');
-    const idEl = document.querySelector('.arc_meta-group:nth-child(1) .arc_meta-value');
-    const projectEl = document.querySelector('.arc_meta-group:nth-child(2) .arc_meta-value');
-    const weightEl = document.querySelector('.arc_meta-group:nth-child(4) .arc_meta-value');
-    const dateEl = document.querySelector('.arc_meta-group:nth-child(5) .arc_meta-value');
+    const idEl = document.getElementById('resourceId');
+    const projectEl = document.getElementById('resourceProject');
+    const mimeEl = document.getElementById('resourceMime');
+    const weightEl = document.getElementById('resourceWeight');
+    const dateEl = document.getElementById('resourceDate');
+    const typeEl = document.getElementById('resourceType');
     const tagsContainer = document.querySelector('.arc_tag-container');
     const downloadBtn = document.querySelector('.arc_btn-primary');
+    const format = getRecordFormat(item);
+    const normalizedFormat = normalizeFacetValue(item.formato);
+    const mimeType = MIME_FORMATS[normalizedFormat]
+        ? normalizedFormat
+        : FORMAT_MIME_TYPES[format] || String(item.formato || 'Formato desconocido');
+    const resourceUrl = String(item.url_archivo || '').trim();
+    const imageFormats = ['gif', 'jpeg', 'jpg', 'png', 'svg', 'webp'];
+    const downloadUrl = resourceUrl || (imageFormats.includes(format) ? getThumbForItem(item) : '');
 
-    if (titleEl) titleEl.textContent = item.titulo;
-    if (descEl) descEl.textContent = item.descripcion;
-    if (idEl) idEl.textContent = item.id;
-    if (projectEl) projectEl.textContent = item.proyecto;
+    if (titleEl) titleEl.textContent = item.titulo || item.id || 'Recurso sin título';
+    if (descEl) descEl.textContent = item.descripcion || 'Sin descripción disponible.';
+    if (idEl) idEl.textContent = item.id || 'N/A';
+    if (projectEl) projectEl.textContent = item.proyecto || 'N/A';
+    if (mimeEl) mimeEl.textContent = mimeType;
     if (weightEl) weightEl.textContent = item.peso || 'N/A';
-    if (dateEl) dateEl.textContent = item.fecha_registro || item.anio;
+    if (dateEl) dateEl.textContent = item.fecha_registro || item.anio || 'N/A';
+    if (typeEl) typeEl.textContent = item.tipo || 'N/A';
+    document.title = `${item.titulo || item.id} — Repositorio Digital`;
 
-    if (downloadBtn && item.url_archivo) {
-        downloadBtn.setAttribute('href', item.url_archivo);
+    if (preview) {
+        preview.replaceChildren(createResourcePreview(item, format, resourceUrl));
     }
 
-    if (tagsContainer && item.tags) {
-        tagsContainer.innerHTML = item.tags.map(t => {
+    if (downloadBtn) {
+        downloadBtn.hidden = !downloadUrl;
+        if (downloadUrl) {
+            downloadBtn.href = downloadUrl;
+            downloadBtn.download = `${item.titulo || item.id || 'recurso'}.${format}`;
+        }
+    }
+
+    if (tagsContainer) {
+        tagsContainer.replaceChildren(...(Array.isArray(item.tags) ? item.tags : []).map(t => {
             const tag = String(t);
             const tagSearchUrl = `browser.html?q=${encodeURIComponent(tag)}`;
-            return `<a class="arc_tag arc_tag-link" href="${escapeHTML(tagSearchUrl)}" aria-label="Buscar por etiqueta ${escapeHTML(tag)}">#${escapeHTML(tag)}</a>`;
-        }).join(' ');
+            const link = document.createElement('a');
+            link.className = 'arc_tag arc_tag-link';
+            link.href = tagSearchUrl;
+            link.setAttribute('aria-label', `Buscar por etiqueta ${tag}`);
+            link.textContent = `#${tag}`;
+            return link;
+        }));
+    }
+}
+
+function createResourcePreview(item, format, resourceUrl) {
+    const imageFormats = ['gif', 'jpeg', 'jpg', 'png', 'svg', 'webp'];
+    const imageUrl = resourceUrl || (imageFormats.includes(format) ? getThumbForItem(item) : '');
+
+    if (imageFormats.includes(format) && imageUrl) {
+        const image = document.createElement('img');
+        image.className = 'arc_resource-image';
+        image.src = imageUrl;
+        image.alt = item.titulo || 'Vista previa del recurso';
+        return image;
+    } else if (format === 'pdf' && resourceUrl) {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'arc_pdf-iframe';
+        iframe.src = `${resourceUrl}#toolbar=1&navpanes=0`;
+        iframe.title = `Vista previa de ${item.titulo || 'documento PDF'}`;
+        return iframe;
+    } else if (['mp3', 'wav', 'aac'].includes(format) && resourceUrl) {
+        const audio = document.createElement('audio');
+        audio.className = 'arc_audio-player';
+        audio.controls = true;
+        audio.src = resourceUrl;
+        audio.append('Tu navegador no soporta la reproducción de audio.');
+        return audio;
+    } else if (['avi', 'mov', 'mp4'].includes(format) && resourceUrl) {
+        const video = document.createElement('video');
+        video.className = 'arc_resource-video';
+        video.controls = true;
+        video.src = resourceUrl;
+        video.append('Tu navegador no soporta la reproducción de video.');
+        return video;
     }
 
-    // Configuración del reproductor de audio o visor PDF
-    const audioElement = document.querySelector('.arc_audio-player');
-    const pdfIframe = document.querySelector('.arc_pdf-iframe');
-
-    if (audioElement && item.url_archivo) {
-        audioElement.src = item.url_archivo;
-    }
-
-    if (pdfIframe && item.url_archivo) {
-        pdfIframe.src = `${item.url_archivo}#toolbar=1&navpanes=0`;
-    }
+    const message = document.createElement('p');
+    message.className = 'arc_preview-message';
+    message.textContent = resourceUrl
+        ? `La vista previa para ${format || 'este formato'} no está disponible.`
+        : 'No hay un archivo asociado para mostrar una vista previa.';
+    return message;
 }
 
 // =========================================================================
