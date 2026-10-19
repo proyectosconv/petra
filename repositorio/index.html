@@ -4,220 +4,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>archivo UnADM/ — Repositorio Digital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="stylesheet" href="css/arc.css">
-    <link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
+    <meta name="theme-color" content="#f1f1f1"><link href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css" rel="stylesheet">
     <link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet">
+    <title>Archivo UnADM — Diseño alternativo</title>
     <style>
-        /* CONFIGURACIÓN DEL SISTEMA DE DISEÑO (ESTILO MIT) */
-        :root {
-            --bg-main: #ffffff;
-            --bg-sidebar: #f4f4f4;
-            --border-color: #dcdcdc;
-            --text-primary: #161616;
-            --text-secondary: #525252;
-            --accent-institutional: #621132;
-            
-            /* Tipografía Dual */
-            --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-        }
-
-        body {
-            font-family: var(--font-ui);
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            margin-top: 15px!important;
-        }
-
-        .arc_container-wide {
-            max-width: 1400px;
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        /* HEADER REDUCIDO PARA LANDING */
-        .arc_header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 12px 0;
-        }
-
-        .arc_nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.3rem;
-            margin-left: 24px;
-            font-family: var(--font-ui);
-        }
-
-        .arc_nav a:hover {
-            color: var(--text-primary);
-            text-decoration: underline;
-        }
-
-        /* CONTENEDOR CENTRAL DE BÚSQUEDA (HERO) */
-        .arc_search-hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 180px); /* Balancea el centrado vertical */
-            padding: 40px 0;
+        * {
             box-sizing: border-box;
         }
 
-        /* LOGO CENTRADO Y ESCALADO */
-        .arc_hero-brand {
-            margin-bottom: 36px;
-            text-align: center;
+        body {
+            min-width: 320px;
+            min-height: 100vh;
+            margin: 0;
+            background: #f1f1f1;
+            color: #080808;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .arc_hero-brand img {
-            max-width: 450px;
-            width: 100%;
-            height: auto;
+        .strm_alternate-home {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* BARRA DE BÚSQUEDA EXPANSIBLE */
-        .arc_search-central-box {
-            width: 100%;
-            max-width: 720px; /* Ancho óptimo de lectura y escaneo */
-            margin: 0 auto;
+        .strm_wordmark {
+            position: absolute;
+            z-index: 0;
+            color: #fff;
+            font-size: clamp(7rem, 16vw, 15rem);
+            font-weight: 700;
+            letter-spacing: -0.085em;
+            line-height: 0.8;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .arc_search-bar-container {
+        .strm_wordmark-archivo {
+            top: 28%;
+            left: -0.04em;
+        }
+
+        .strm_wordmark-unadm {
+            top: 53%;
+            right: -0.04em;
+        }
+
+        .strm_search-panel {
+            position: absolute;
+            z-index: 1;
+            left: 50%;
+            width: min(540px, calc(100% - 40px));
+            transform: translateX(-50%);
+        }
+
+        .strm_search-panel {
+            top: 43.8%;
+        }
+
+        .strm_search-bar {
+            animation: strm_focus-in 900ms cubic-bezier(0.2, 0.7, 0.25, 1) both;
+        }
+
+        .strm_search-bar {
             display: flex;
-            border: 1px solid var(--text-primary);
-            height: 46px; /* Ligeramente más alta para enfatizar la jerarquía de home */
-            background: #fff;
+            height: 50px;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 999px;
+            /*background: #000;*/
         }
 
-        .arc_search-input {
+        .strm_search-input {
             flex: 1;
-            border: none !important;
-            padding: 12px 18px !important;
-            font-size: 1.5rem;
-            font-family: var(--font-ui);
-            margin-bottom: 0 !important;
-            box-shadow: none !important;
-            height: auto !important;
+            min-width: 0;
+            height: 50px;
+            margin: 0;
+            padding: 0 20px;
+            border: 0;
+            outline: 0;
+            background: #222222;
+            color: #fff;
+            font: inherit;
+            font-size: 16px;
         }
 
-        .arc_search-button {
-            background: var(--text-primary) !important;
-            color: white !important;
-            border: none !important;
-            padding: 0 32px !important;
-            font-weight: 500;
+        .strm_search-input:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .strm_search-button {
+            flex: 0 0 125px;
+            border: 0;
+            border-radius: 0px;
+            background: linear-gradient(110deg, #222222, #20d38f);
+            color: #ffffff;
+            font: inherit;
+            font-size: 16px;
             cursor: pointer;
-            text-transform: uppercase;
-            font-size: 1.3rem !important;
-            letter-spacing: 0.5px;
-            margin-bottom: 0 !important;
-            height: auto !important;
-            border-radius: 0 !important;
         }
 
-        .arc_search-button:hover {
-            background: var(--accent-institutional) !important;
+        .strm_search-button:hover,
+        .strm_search-button:focus-visible {
+            background: linear-gradient(110deg, #0269dc, #1bbd7f);
         }
 
-        /* NAVEGACIÓN DE FILTROS (DROPDOWNS SUBYACENTES) */
-        .arc_dropdown-nav-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
+        .strm_filters {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            width: min(360px, calc(100% - 40px));
+            margin: 18px auto 0;
+            animation: strm_filters-in 220ms ease-out both;
+        }
+
+        .strm_filters[hidden] {
+            display: none;
+        }
+
+        .strm_filters-toggle {
+            display: block;
+            margin: 6px auto 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #222;
+            font: inherit;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .strm_filters-toggle:hover,
+        .strm_filters-toggle:focus-visible {
+            text-decoration: underline;
+        }
+
+        @keyframes strm_focus-in {
+            from {
+                filter: blur(12px);
+                opacity: 0.25;
+                transform: scale(0.98);
+            }
+
+            to {
+                filter: blur(0);
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes strm_filters-in {
+            from {
+                filter: blur(8px);
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                filter: blur(0);
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .strm_search-bar,
+            .strm_filters {
+                animation: none;
+            }
+        }
+
+        .strm_filter-field {
+            display: block;
+            min-width: 0;
+        }
+
+        .strm_filter-label {
+            display: block;
+            margin: 0 0 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .strm_filter-options {
+            max-height: 136px;
+            overflow-y: auto;
+            border-left: 1px solid #999;
+        }
+
+        .strm_filter-option {
+            display: block;
             width: 100%;
-            justify-content: space-between;
+            min-height: 18px;
+            margin: 0;
+            padding: 1px 5px 1px 10px;
+            color: #222;
+            font-size: 12px;
+            line-height: 16px;
+            cursor: pointer;
         }
 
-      .arc_filter-select {
-    flex: 1;
-    font-family: var(--font-mono) !important;
-    font-size: 1.2rem !important;
-    height: 38px !important;
-    
-    /* PADDING: 16px de aire a la izquierda del texto y 36px a la derecha para que no choque con la flecha */
-    padding: 0 36px 0 16px !important; 
-    
-    margin: 0 !important;
-    border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
-    background-color: #fafafa !important;
-    color: var(--text-secondary);
-    cursor: pointer;
-    
-    /* Forzar la eliminación de estilos heredados del framework */
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-    
-    /* Renderizado e inyección limpia del indicador */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23525252'/></svg>") !important;
-    background-repeat: no-repeat !important;
-    
-    /* Ubicación matemática exacta: 16px separado del borde derecho, centrado verticalmente */
-    background-position: calc(100% - 16px) center !important;
-    background-size: 10px 6px !important;
-}
+        .strm_filter-option input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            clip-path: inset(50%);
+        }
 
-/* Limpieza de remanentes para motores antiguos de Edge/IE */
-.arc_filter-select::-ms-expand {
-    display: none !important;
-}
+        .strm_filter-option:has(input:checked) {
+            background: #20d38f;
+        }
 
-        /* FOOTER TÉCNICO */
-        .arc_footer {
-            border-top: 1px solid var(--border-color);
-            padding: 16px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .strm_filter-option:focus-within {
+            outline: 2px solid #0269dc;
+            outline-offset: -2px;
+        }
+
+        @media (max-width: 600px) {
+            .strm_wordmark {
+                font-size: clamp(6rem, 24vw, 9rem);
+            }
+
+            .strm_wordmark-archivo {
+                top: 22%;
+            }
+
+            .strm_wordmark-unadm {
+                top: 44%;
+            }
+
+            .strm_search-panel {
+                top: 37%;
+            }
+
+            .strm_search-button {
+                flex-basis: 105px;
+            }
+
+            .strm_filters {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                width: 100%;
+                margin: 20px 0 0;
+            }
+
+            .strm_filter-label {
+                text-align: left;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="arc_container-wide">
-        <main class="arc_search-hero">
-            <div class="arc_hero-brand">
-                <img src="img/logo2.png" alt="Archivo UnADM">
+    <main class="strm_alternate-home">
+        <div class="strm_wordmark strm_wordmark-archivo" aria-hidden="true">Archivo</div>
+        <div class="strm_wordmark strm_wordmark-unadm" aria-hidden="true">UnADM</div>
+
+        <section class="strm_search-panel" aria-label="Buscar en el repositorio">
+            <div class="strm_search-bar" role="search">
+                <input class="strm_search-input strm_arc_search-input" type="search"
+                    aria-label="Buscar por palabra clave, título o ID de recurso" autocomplete="off" autofocus>
+                <button class="strm_search-button strm_arc_search-button" type="submit">Buscar</button>
             </div>
-            <div class="arc_search-central-box">
-                <div class="arc_search-bar-container">
-                    <input type="text" class="arc_search-input" autofocus placeholder="Buscar por palabra clave, título, ID de recurso...">
-                    <button class="arc_search-button">Buscar</button>
-                </div>
-                <!-- Fila de Dropdowns Inferiores (Filtros Avanzados) -->
-                <div class="arc_dropdown-nav-group">
-                    <select class="arc_filter-select">
-                        <option value="all" selected>AÑO (TODOS)</option>
-                    </select>
-                    <select class="arc_filter-select">
-                        <option value="all" selected>TEMA (TODOS)</option>
-                    </select>
-                    <select class="arc_filter-select">
-                        <option value="all" selected>FORMATO (TODOS)</option>
-                    </select>
-                </div>
+
+            <button class="strm_filters-toggle" type="button" aria-expanded="false" aria-controls="strm-search-filters">+ Agregar filtros</button>
+            <div class="strm_filters" id="strm-search-filters" aria-label="Filtros de búsqueda" hidden>
+                <section class="strm_filter-field" aria-labelledby="strm-year-label">
+                    <span class="strm_filter-label" id="strm-year-label">Año</span>
+                    <div class="strm_filter-options" data-filter-type="anio" role="group" aria-label="Filtrar por año"></div>
+                </section>
+                <section class="strm_filter-field" aria-labelledby="strm-theme-label">
+                    <span class="strm_filter-label" id="strm-theme-label">Tema</span>
+                    <div class="strm_filter-options" data-filter-type="tema" role="group" aria-label="Filtrar por tema"></div>
+                </section>
+                <section class="strm_filter-field" aria-labelledby="strm-format-label">
+                    <span class="strm_filter-label" id="strm-format-label">Formato</span>
+                    <div class="strm_filter-options" data-filter-type="formato" role="group" aria-label="Filtrar por formato"></div>
+                </section>
             </div>
-        </main>
-        <footer class="arc_footer">
-            <div>SISTEMA CENTRALIZADO DE REPOSITORIOS (UnADM)</div>
-            <div>MÉTRICAS_TOTALES: [556 audios] / [456 documentos] / [5,467 videos]</div>
-        </footer>
-    </div>
-    <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accessibility.min.js"></script>
-    <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
-    <!-- Lógica del Repositorio Centralizado -->
+        </section>
+    </main>
     <script src="js/app.js"></script>
+        <script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+        <script src="https://framework-gb.cdn.gob.mx/gm/v3/assets/js/gobmx.js"></script>
 </body>
 
 </html>
