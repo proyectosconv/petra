@@ -19,6 +19,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     margin-top: 15px !important;
+    background-color: #f1f1f1!important;
 }
 
 /* Contenedor expandido para aprovechar monitores anchos (Override de Skeleton) */
@@ -36,7 +37,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+   /* border-bottom: 1px solid var(--border-color);*/
 }
 
 /* Variante optimizada para la Landing Page (Agrega class="arc_landing" al header en el HTML) */
@@ -119,8 +120,8 @@ body {
 
 .arc_breadcrumb-banner {
     padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-main);
+/* border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-main);*/
 }
 
 .arc_back-link {
@@ -147,7 +148,7 @@ body {
    ========================================================================== */
 .arc_search-console {
     padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
+   /* border-bottom: 1px solid var(--border-color);*/
     margin-bottom: 0;
 }
 
@@ -195,12 +196,77 @@ body {
     border-radius: 0 !important;
 }
 
-.arc_active-facets {
+.arc_search-console .arc_search-bar-container {
+    width: min(100%);
+    height: 50px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 999px;
+    background: #222;
+}
+
+.arc_search-console .arc_search-input {
+    flex: 1;
+    min-width: 0;
+    height: 50px !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    border: 0 !important;
+    outline: 0;
+    background: #222 !important;
+    color: #fff !important;
+    font: inherit;
+    font-size: 16px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: none !important;
+}
+
+.arc_search-console .arc_search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.arc_search-console .arc_search-input:focus-visible {
+    outline: none;
+    box-shadow: none !important;
+}
+
+.arc_search-console .arc_search-button {
+    flex: 0 0 125px;
+    height: 50px !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(110deg, #222, #20d38f) !important;
+    color: #fff !important;
+    font: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px !important;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.arc_search-console .arc_search-button:hover,
+.arc_search-console .arc_search-button:focus-visible {
+    background: linear-gradient(110deg, #0269dc, #1bbd7f) !important;
+}
+
+.arc_search-console .arc_active-facets {
     display: flex;
     gap: 8px;
     margin-top: 12px;
     align-items: center;
     flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .arc_search-console .arc_search-button {
+        flex-basis: 105px;
+    }
 }
 
 .arc_facet-label {
@@ -211,9 +277,9 @@ body {
 }
 
 .arc_chip {
-    background-color: var(--bg-sidebar);
-    border: 1px solid var(--border-color);
-    padding: 2px 8px;
+    background-color: #ffffff;
+        border: none;
+        padding: 10px 20px;
     font-size: 1.2rem;
     display: flex;
     align-items: center;
@@ -318,9 +384,9 @@ body {
    ========================================================================== */
 .arc_sidebar-filters,
 .arc_sidebar-nav {
-    background-color: var(--bg-sidebar);
-    border: 1px solid var(--border-color);
-    padding: 20px 16px;
+        background-color: #e4e4e4;
+            /* border: 1px solid var(--border-color); */
+            padding: 20px 16px;
 }
 
 .arc_sidebar-title {
@@ -472,6 +538,36 @@ body {
     padding: 10px 8px;
     border-bottom: 1px solid #f1f1f1;
     vertical-align: top;
+}
+
+.arc_pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 0;
+}
+
+.arc_pagination[hidden] {
+    display: none;
+}
+
+.arc_pagination-button {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.arc_pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.arc_pagination-status {
+    font-size: 1.3rem;
 }
 
 /* Small screens: visually stack rows as cards with label-value pairs */
@@ -671,6 +767,10 @@ body {
     background-color: #fcfcfc;
 }
 
+.arc_data-table tbody tr[data-resource-url] {
+    cursor: pointer;
+}
+
 .arc_td-thumb {
     width: 70px;
     padding: 8px 6px !important;
@@ -729,27 +829,54 @@ body {
 /* ==========================================================================
    VISTA DE DETALLE DEL RECURSO (PREVISUALIZACIÓN Y METADATOS)
    ========================================================================== */
-.arc_preview-box-pdf {
+.arc_preview-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--bg-sidebar);
-    border: 1px solid var(--border-color);
+    /*border: 1px solid var(--border-color);*/
     margin-bottom: 24px;
-    height: 650px;
+    min-height: 260px;
     position: relative;
+    overflow: hidden;
 }
 
-.arc_pdf-iframe {
+.arc_resource-image {
+    display: block;
+    max-width: 100%;
+    max-height: 650px;
+    object-fit: contain;
+}
+
+.arc_pdf-iframe,
+.arc_resource-video {
     width: 100%;
-    height: 100%;
+    height: 650px;
     border: none;
 }
 
+.arc_audio-player {
+    width: min(90%, 640px);
+}
+
+.arc_preview-message {
+    padding: 24px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.arc_preview-message p {
+    margin: 0;
+}
+
 .arc_resource-info h1 {
-    font-family: var(--font-mono);
-    font-size: 2.4rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: var(--text-primary);
+        font-family: sans-serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+ 
 }
 
 .arc_resource-description {
@@ -761,9 +888,9 @@ body {
 }
 
 .arc_metadata-panel {
-    border: 1px solid var(--border-color);
-    padding: 24px 20px;
-    background-color: var(--bg-main);
+    border: none;
+        padding: 24px 20px;
+        background-color: #e4e4e4;
 }
 
 .arc_panel-title {
@@ -796,6 +923,13 @@ body {
     color: var(--text-primary);
 }
 
+.arc_badge {
+    font-family: var(--font-mono);
+    padding: 2px 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-sidebar);
+}
+
 .arc_meta-value .arc_badge-pdf {
     font-family: var(--font-mono);
     background-color: var(--bg-pdf);
@@ -824,6 +958,10 @@ body {
     margin-bottom: 12px;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.arc_btn-action[hidden] {
+    display: none;
 }
 
 .arc_btn-primary {
